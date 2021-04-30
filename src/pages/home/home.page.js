@@ -1,5 +1,12 @@
+import Search from "../../components/search";
+
 function HomePage() {
-    return (<p>home is working</p>);
+    return (
+        <div class="grid">
+            <Search>
+
+            </Search>
+        </div>);
 }
 
 export default HomePage;

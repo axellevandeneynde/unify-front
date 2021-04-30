@@ -1,0 +1,24 @@
+{
+  "engineName": "unify",
+  "endpointBase": "https://enterprise-search-deployment-2e3053.ent.westeurope.azure.elastic-cloud.com",
+  "searchKey": "search-3xbbfde3hja59kpqsvjp6eh4",
+  "resultFields": [
+    "date",
+    "source_country",
+    "link",
+    "description",
+    "title",
+    "source_link",
+    "source_title",
+    "source_description",
+    "source_logo",
+    "labels",
+    "id"
+  ],
+  "sortFields": [
+
+  ],
+  "facets": [
+
+  ]
+}
