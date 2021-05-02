@@ -1,7 +1,7 @@
-{
+export default {
   "engineName": "unify",
-  "endpointBase": "https://enterprise-search-deployment-2e3053.ent.westeurope.azure.elastic-cloud.com",
-  "searchKey": "search-3xbbfde3hja59kpqsvjp6eh4",
+  "endpointBase": process.env.REACT_APP_ELASTIC_URL,
+  "searchKey": process.env.REACT_APP_ELASTIC_SEARCH_KEY,
   "resultFields": [
     "url",
     "title",

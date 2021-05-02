@@ -3,6 +3,9 @@ footer {
     min-height: 15vh;
     padding: 5vh 0;
     margin-top: 3em;
+    width: 100vw;
+    margin-left: -$spacer;
+    box-sizing: border-box;
 
     p {
         color: white;
