@@ -15,6 +15,7 @@ import {
     buildSearchOptionsFromConfig,
     getConfig,
 } from "./config/config-helper";
+import Article from "../article";
 
 const { hostIdentifier, searchKey, endpointBase, engineName } = getConfig();
 const connector = new AppSearchAPIConnector({
@@ -30,7 +31,7 @@ const config = {
     },
     autocompleteQuery: buildAutocompleteQueryConfig(),
     apiConnector: connector,
-    alwaysSearchOnInitialLoad: true
+    alwaysSearchOnInitialLoad: false
 };
 
 export default function Search() {
@@ -48,10 +49,10 @@ export default function Search() {
                     return (
                         <div className="grid">
                             <ErrorBoundary>
-                                <div className="searchbar-wrapper grid">
-                                    <p>Lees over een specifiek onderwerp</p>
+                                <div className="searchbar-wrapper body-padding grid">
+                                    <p className="text-small">Lees over een specifiek onderwerp</p>
                                     <div className="searchbar">
-                                        <span class="material-icons">
+                                        <span class="material-icons material-icons-m">
                                             search
                                     </span>
                                         <input
@@ -60,9 +61,16 @@ export default function Search() {
                                         />
                                     </div>
                                 </div>
-                                {/* {results.map(r => (
-                                    <div key={r.id.raw}>{r.title.raw}</div>
-                                ))} */}
+                                {results.length > 0 &&
+                                    <div className="search-result-wrapper grid">
+                                        {results.map(r => (
+                                            <Article key={r?.id?.raw}
+                                                article={r}
+                                            >
+                                            </Article>
+                                        ))}
+                                    </div>
+                                }
                                 {autocompletedResults.map(r => (
                                     <div key={r}>{r}</div>
                                 ))}

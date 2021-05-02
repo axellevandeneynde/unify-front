@@ -1,4 +1,4 @@
-@import './variables.scss';
+@import '../variables.scss';
 
 .searchbar {
     height: 2em;
@@ -26,10 +26,13 @@
 }
 
 .searchbar-wrapper {
-    padding: 1.5em 0;
-    grid-column: 1 / span 12;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    box-sizing: content-box;
+    position: relative;
+    left: -$spacer;
 
-    background-image: url("../assets/background-logo.svg");
+    background-image: url("../../assets/background-logo.svg");
     background-repeat: no-repeat;
     background-size: 150%;
     background-position: center center;
@@ -50,5 +53,14 @@
         }
     }
 
+}
 
+.search-result-wrapper {
+    z-index: 50;
+    background-color: $white;
+    min-height: 80vh;
+
+    .article {
+        z-index: 51;
+    }
 }

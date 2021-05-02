@@ -6,15 +6,20 @@ import {
 } from "react-router-dom";
 
 import HomePage from './pages/home/home.page';
+import Footer from './components/footer';
+import Navigation from "./components/navigation/navigation";
 
 function App() {
   return (<Router>
-    {/* add navigation here */}
-    <Switch>
-      <Route path="/">
-        <HomePage />
-      </Route>
-    </Switch>
+    <div className="grid body-padding">
+      <Navigation></Navigation>
+      <Switch>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
+      <Footer></Footer>
+    </div>
   </Router>);
 }
 

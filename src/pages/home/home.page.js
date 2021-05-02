@@ -1,11 +1,10 @@
-import Search from "../../components/search";
-
+import Search from "../../components/search/search";
+import Feed from "../../components/feed/feed";
 function HomePage() {
     return (
-        <div class="grid">
-            <Search>
-
-            </Search>
+        <div className="grid">
+            <Search></Search>
+            <Feed></Feed>
         </div>);
 }
 

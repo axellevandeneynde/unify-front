@@ -3,22 +3,21 @@
   "endpointBase": "https://enterprise-search-deployment-2e3053.ent.westeurope.azure.elastic-cloud.com",
   "searchKey": "search-3xbbfde3hja59kpqsvjp6eh4",
   "resultFields": [
-    "date",
-    "source_country",
-    "link",
-    "description",
+    "url",
     "title",
-    "source_link",
-    "source_title",
-    "source_description",
-    "source_logo",
     "labels",
-    "id"
+    "id",
+    "date",
+    "image",
+    "description",
+    "rss_categories",
+    "source_logo",
+    "source_name",
+    "source_description",
+    "source_website",
+    "source_categories",
+    "source_regions"
   ],
-  "sortFields": [
-
-  ],
-  "facets": [
-
-  ]
+  "sortFields": [],
+  "facets": []
 }

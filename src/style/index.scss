@@ -1,3 +1,7 @@
 @import './typography.scss';
-@import './search.scss';
 @import './layout.scss';
+
+@import './components/search.scss';
+@import './components/article.scss';
+@import './components/footer.scss';
+@import './components/navigations.scss';
