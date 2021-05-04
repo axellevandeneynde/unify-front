@@ -5486,6 +5486,11 @@
   "resolved" "https://registry.npmjs.org/flatten/-/flatten-1.0.3.tgz"
   "version" "1.0.3"
 
+"flexboxgrid@^6.3.1":
+  "integrity" "sha1-6ZiYr8B7cEdyK7galYpfuk1OIP0="
+  "resolved" "https://registry.npmjs.org/flexboxgrid/-/flexboxgrid-6.3.1.tgz"
+  "version" "6.3.1"
+
 "flush-write-stream@^1.0.0":
   "integrity" "sha512-3Z4XhFZ3992uIq0XOqb9AreonueSYphE6oYbpt5+3u06JWklbsPkNv3ZKkP9Bz/r+1MWCaMoSQ28P85+1Yc77w=="
   "resolved" "https://registry.npmjs.org/flush-write-stream/-/flush-write-stream-1.1.1.tgz"

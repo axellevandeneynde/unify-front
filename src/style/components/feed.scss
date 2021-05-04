@@ -2,23 +2,4 @@
 
 .feed {
     grid-column: 1 / span 12;
-
-    &-title {
-        grid-column: 3/span 10;
-        display: flex;
-        margin-top: $spacer;
-        align-items: center;
-
-        &-tab {
-            width: 10%;
-            background-color: $pink;
-            border-radius: 10px;
-            margin-left: -$spacer;
-            height: 3em;
-        }
-
-        h2 {
-            margin-left: $spacer-s;
-        }
-    }
 }

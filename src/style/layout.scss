@@ -1,36 +1,18 @@
 @import './variables.scss';
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: $spacer;
-    grid-column: 1/ span 12;
-    box-sizing: border-box;
-
-    @media screen and (max-width: 1024px) {
-        grid-template-columns: repeat(8, 1fr);
-        grid-column: 1/ span 8;
-    }
-
-    @media screen and (max-width: 600px) {
-        grid-template-columns: repeat(4, 1fr);
-        column-gap: 1em;
-        grid-column: 1/ span 4;
-    }
-}
 
 .body-padding {
-    padding-left: 2em;
-    padding-right: 4em;
+    padding-left: 2rem;
+    padding-right: 4rem;
 
     @media screen and (max-width: 1024px) {
-        padding-left: 4em;
-        padding-right: 4em;
+        padding-left: 4rem;
+        padding-right: 4rem;
     }
 
     @media screen and (max-width: 600px) {
-        padding-left: 2em;
-        padding-right: 2em;
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
 
     overflow: hidden;

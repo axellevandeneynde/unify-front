@@ -1,0 +1,24 @@
+@import '../variables.scss';
+
+.loading {
+    border: 8px solid $light-grey;
+    border-top: 8px solid $pink;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 110;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

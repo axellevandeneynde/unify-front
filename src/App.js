@@ -11,15 +11,13 @@ import Navigation from "./components/navigation/navigation";
 
 function App() {
   return (<Router>
-    <div className="grid body-padding">
-      <Navigation></Navigation>
-      <Switch>
-        <Route path="/">
-          <HomePage />
-        </Route>
-      </Switch>
-      <Footer></Footer>
-    </div>
+    <Navigation></Navigation>
+    <Switch>
+      <Route path="/">
+        <HomePage />
+      </Route>
+    </Switch>
+    <Footer></Footer>
   </Router>);
 }
 

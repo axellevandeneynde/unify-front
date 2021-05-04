@@ -47,12 +47,12 @@ export default function Search() {
             >
                 {({ searchTerm, setSearchTerm, results, autocompletedResults }) => {
                     return (
-                        <div className="grid">
+                        <div className="search">
                             <ErrorBoundary>
-                                <div className="searchbar-wrapper body-padding grid">
-                                    <p className="text-small">Lees over een specifiek onderwerp</p>
-                                    <div className="searchbar">
-                                        <span class="material-icons material-icons-m">
+                                <div className="searchbar-wrapper body-padding row">
+                                    <p className="text-small col-md-offset-4 col-md-5">Lees over een specifiek onderwerp</p>
+                                    <div className="searchbar col-md-offset-4 col-md-5">
+                                        <span className="material-icons material-icons-m">
                                             search
                                     </span>
                                         <input
@@ -60,9 +60,11 @@ export default function Search() {
                                             onChange={e => setSearchTerm(e.target.value)}
                                         />
                                     </div>
+                                    <div className="searchbar-line">
+                                    </div>
                                 </div>
                                 {results.length > 0 &&
-                                    <div className="search-result-wrapper grid">
+                                    <div className="search-result-wrapper">
                                         {results.map(r => (
                                             <Article key={r?.id?.raw}
                                                 article={r}

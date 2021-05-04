@@ -1,0 +1,45 @@
+@import '../variables.scss';
+
+.title {
+
+    &-tab {
+        border-radius: 10px;
+        height: 4rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+
+        span {
+            position: relative;
+            right: -1rem;
+        }
+
+    }
+
+    .yellow {
+        background-color: $yellow;
+    }
+
+    .pink {
+        background-color: $pink;
+    }
+
+    .green {
+        background-color: $green;
+    }
+
+    .blue {
+        background-color: $blue;
+    }
+
+    .highlight {
+        transform: rotate(135deg);
+    }
+
+    h1 {
+        font-size: 3rem;
+        grid-column: 4/ span 8;
+    }
+}

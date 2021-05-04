@@ -1,23 +1,12 @@
 @import '../variables.scss';
 
 .searchbar {
-    height: 2em;
+    height: 1.5rem;
     box-shadow: $shadow;
-    border-radius: 0.7em;
+    border-radius: 0.5rem;
     display: flex;
-    padding: 0 1em;
+    padding: 0 0.5rem;
     background-color: $white;
-
-    grid-column: 5 / span 5;
-    grid-row: 2 / span 1;
-
-    @media screen and (max-width: 1024px) {
-        grid-column: 1/ span 8;
-    }
-
-    @media screen and (max-width: 600px) {
-        grid-column: 1/ span 4;
-    }
 
     input {
         border: none;
@@ -26,32 +15,31 @@
 }
 
 .searchbar-wrapper {
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
-    box-sizing: content-box;
-    position: relative;
-    left: -$spacer;
-    width: 100%;
-
-    background-image: url("../../assets/background-logo.svg");
-    background-repeat: no-repeat;
-    background-size: 150%;
-    background-position: center center;
-
+    padding: 1rem 0 1.5rem 0;
+    // box-sizing: content-box;
+    position: fixed;
+    width: 100vw;
+    overflow: visible;
+    background-color: $white;
+    z-index: 99;
+    top: 0;
+    box-sizing: border-box;
 
     p {
-        grid-column: 5 / span 5;
-        grid-row: 1/ span 1;
         margin-block-start: 0;
-        margin-block-end: 0.5em;
+        margin-block-end: 0.5rem;
+    }
 
-        @media screen and (max-width: 1024px) {
-            grid-column: 1/ span 8;
-        }
+    .searchbar-line {
+        background-image: url('../../assets/background-logo.svg');
+        background-size: 130%;
+        height: 5px;
+        background-position: center center;
+        width: 100vw;
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0;
 
-        @media screen and (max-width: 600px) {
-            grid-column: 1/ span 4;
-        }
     }
 
 }
@@ -60,6 +48,7 @@
     z-index: 50;
     background-color: $white;
     min-height: 80vh;
+    padding-top: 6.5rem;
 
     .article {
         z-index: 51;
