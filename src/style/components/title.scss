@@ -34,12 +34,11 @@
         background-color: $blue;
     }
 
-    .highlight {
+    .icon-highlight {
         transform: rotate(135deg);
     }
 
     h1 {
-        font-size: 3rem;
         grid-column: 4/ span 8;
     }
 }

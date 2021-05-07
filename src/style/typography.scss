@@ -41,7 +41,6 @@ a {
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
-    color: $black;
 }
 
 .material-icons-s {
@@ -59,15 +58,23 @@ a {
 
 .title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     margin: 0.5em 0 0 0;
+    text-decoration: none;
+    color: $black;
+}
+
+.side-title {
+    font-family: 'Montserrat',
+        sans-serif;
+    font-size: 1rem;
     text-decoration: none;
     color: $black;
 }
 
 .page-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
+    font-size: 3rem;
     text-decoration: none;
     color: $black;
 }
@@ -75,7 +82,7 @@ a {
 .text {
     font-family: 'Karla', sans-serif;
     font-size: 1rem;
-    margin: 0.5em 0 0 0;
+    margin: 0.5rem 0 0 0;
     color: $black;
     text-decoration: none;
 }
@@ -95,10 +102,6 @@ a {
     text-decoration: none;
 }
 
-.grey {
-    color: $grey;
-}
-
 .text-over-image {
     font-family: 'Karla', sans-serif;
     text-decoration: none;
@@ -107,4 +110,16 @@ a {
     text-shadow: 0 0 6px $black,
         0 0 6px $black,
         0 0 6px $black;
+}
+
+.grey {
+    color: $grey;
+}
+
+.text-emphasis {
+    text-decoration: underline wavy $pink;
+}
+
+.text-emphasis:hover {
+    font-style: italic;
 }

@@ -2,17 +2,14 @@
 
 
 .body-padding {
-    padding-left: 2rem;
-    padding-right: 4rem;
+    padding: 0 2rem;
 
     @media screen and (max-width: 1024px) {
-        padding-left: 4rem;
-        padding-right: 4rem;
+        padding: 0 4rem;
     }
 
     @media screen and (max-width: 600px) {
-        padding-left: 2rem;
-        padding-right: 2rem;
+        padding: 0 2rem;
     }
 
     overflow: hidden;

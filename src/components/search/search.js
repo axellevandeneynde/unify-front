@@ -15,7 +15,7 @@ import {
     buildSearchOptionsFromConfig,
     getConfig,
 } from "./config/config-helper";
-import Article from "../article";
+import Article from "../articles/article";
 
 const { hostIdentifier, searchKey, endpointBase, engineName } = getConfig();
 const connector = new AppSearchAPIConnector({

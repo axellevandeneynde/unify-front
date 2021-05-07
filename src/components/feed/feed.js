@@ -1,5 +1,6 @@
-import Article from '../article';
+import Article from '../articles/article';
 import Loading from '../loading';
+import Title from '../title';
 import { useState, useEffect } from 'react';
 
 export default function Feed() {
@@ -20,10 +21,16 @@ export default function Feed() {
                 body: JSON.stringify({
                     query: '',
                     filters: {
-                        date: {
-                            from: new Date(dayAgo),
-                        }
-                    },
+                        all: [
+                            {
+                                date: {
+                                    from: new Date(dayAgo)
+                                }
+                            },
+                            { source_regions: ['belgium', 'flanders', 'wallonia'] },
+                            { source_categories: 'general' }
+                        ],
+                    }
                 })
             }).then(res => res.json())
                 .then(data => {
@@ -36,17 +43,12 @@ export default function Feed() {
     })
 
     return (
-        <div className="feed">
-            <div className="feed-title">
-                <span className="feed-title-tab"></span>
-                <h2 className="page-title">{feedTitle.toUpperCase()}</h2>
-            </div>
-            <div className=" search-result-wrapper">
-                {feedLoading &&
-                    <Loading></Loading>
-                }
-                {articles}
-            </div>
+        <div className="feed body-padding">
+            <Title title={feedTitle} icon="article" color="blue"></Title>
+            {feedLoading &&
+                <Loading></Loading>
+            }
+            {articles}
         </div>
     )
 }

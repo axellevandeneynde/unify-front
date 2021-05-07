@@ -3,6 +3,8 @@
 .article {
     grid-column: 4 / span 5;
     margin-top: $spacer;
+    position: relative;
+    right: -0.5rem;
 
     @media screen and (max-width: 1024px) {
         grid-column: 1/ span 8;
@@ -39,6 +41,38 @@
             span {
                 margin-left: $spacer-xs
             }
+        }
+    }
+}
+
+.desktop-related {
+    margin-top: 1rem;
+    max-height: 400px;
+    overflow: hidden;
+
+    .desktop-related-article {
+        display: inline-flex;
+        margin-top: 1rem;
+
+        img {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            margin-right: 1rem;
+            opacity: 0.75;
+        }
+
+        h4 {
+            opacity: 0.6;
+        }
+
+    }
+
+    .desktop-related-article:hover {
+
+        img,
+        h4 {
+            opacity: 1;
         }
     }
 }
