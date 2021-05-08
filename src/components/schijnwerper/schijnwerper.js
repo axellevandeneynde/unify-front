@@ -1,6 +1,7 @@
 import Title from '../title';
 import { useState, useEffect } from 'react';
-import SchijnwerperArticle from './schijnwerper-article'
+import SchijnwerperArticle from './schijnwerper-article';
+import Loading from '../loading';
 
 export default function Schijnwerper() {
 
@@ -32,6 +33,9 @@ export default function Schijnwerper() {
             <div className="row">
                 <p className="text-intro col-md-offset-3 col-md-6">Dagelijks <span className="text-emphasis">manueel geselecteerd</span>  zodat je omvangrijke nieuws items niet zou missen en je horizon kan verbreden. </p>
             </div>
+            {loading &&
+                <Loading></Loading>
+            }
             <div className="row">
                 {articles}
             </div>

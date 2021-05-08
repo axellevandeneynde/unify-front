@@ -17,7 +17,7 @@ export default function RelatedArticles(props) {
                     'Authorization': `Bearer ${process.env.REACT_APP_ELASTIC_SEARCH_KEY}`
                 },
                 body: JSON.stringify({
-                    query: searchQueries.raw.join(' '),
+                    query: searchQueries.raw.join(' ').slice(0, 127),
                     search_fields: {
                         title: {},
                         description: {},
@@ -46,7 +46,7 @@ export default function RelatedArticles(props) {
         related.map(relatedArticle => {
             return <div key={relatedArticle.id.raw} className='desktop-related-article'>
                 <img src={relatedArticle.source_logo.raw} alt={relatedArticle.source_name.raw}></img>
-                <a href={relatedArticle.url.raw} target="_blank" rel="noreferrer"><h4 className="side-title">{relatedArticle.title.raw} <span class="material-icons material-icons-s">open_in_new</span></h4></a>
+                <a href={relatedArticle.url.raw} target="_blank" rel="noreferrer"><h4 className="side-title">{relatedArticle.title.raw} <span className="material-icons material-icons-s">open_in_new</span></h4></a>
             </div>
         })
 

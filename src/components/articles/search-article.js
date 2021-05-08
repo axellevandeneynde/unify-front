@@ -1,9 +1,7 @@
-import RelatedArticles from './Related-articles';
-
-export default function Article(props) {
+export default function SearchArticle(props) {
     return (
         <div className="row" >
-            <div className="article col-md-offset-3 col-md-5">
+            <div className="article col-md-offset-4 col-md-5">
                 <div className="article-image-wrapper">
                     <a href={props.article.url.raw} target="_blank" rel='noreferrer'>
                         <img src={props.article.image.raw} alt=""></img>
@@ -23,9 +21,6 @@ export default function Article(props) {
                 </a>
                 <span className="text-small grey">{props.article.date.raw}</span>
                 <p className="text">{props.article.description.raw}</p>
-            </div>
-            <div className="col-md-3">
-                <RelatedArticles article={props.article}></RelatedArticles>
             </div>
         </div>
     )

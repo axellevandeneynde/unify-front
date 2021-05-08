@@ -1,18 +1,13 @@
 @import '../variables.scss';
 
 .article {
-    grid-column: 4 / span 5;
     margin-top: $spacer;
     position: relative;
     right: -0.5rem;
 
-    @media screen and (max-width: 1024px) {
-        grid-column: 1/ span 8;
-    }
+    @media screen and (max-width: 1024px) {}
 
-    @media screen and (max-width: 600px) {
-        grid-column: 1/ span 4;
-    }
+    @media screen and (max-width: 600px) {}
 
     img {
         width: 100%;

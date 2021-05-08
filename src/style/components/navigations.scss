@@ -9,6 +9,17 @@
     padding-left: $spacer;
     width: calc(100%/6 + 1rem);
 
+    .nav-main-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 4rem;
+
+        .nav-section-wrapper {
+            padding: $spacer 0;
+        }
+    }
+
     img {
         max-width: 100%;
         padding-right: $spacer;
@@ -17,4 +28,11 @@
         height: 4rem;
     }
 
+}
+
+.nav-link {
+    display: block;
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
 }

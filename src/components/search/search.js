@@ -1,4 +1,8 @@
-import React from "react";
+import { useState } from 'react';
+import {
+    Redirect,
+    useLocation
+} from "react-router-dom";
 
 import AppSearchAPIConnector from "@elastic/search-ui-app-search-connector";
 import '../assets/background-logo.svg'
@@ -15,7 +19,7 @@ import {
     buildSearchOptionsFromConfig,
     getConfig,
 } from "./config/config-helper";
-import Article from "../articles/article";
+import SearchArticle from "../articles/search-article";
 
 const { hostIdentifier, searchKey, endpointBase, engineName } = getConfig();
 const connector = new AppSearchAPIConnector({
@@ -35,6 +39,16 @@ const config = {
 };
 
 export default function Search() {
+
+    const [redirectToSearch, setRedirectToSearch] = useState(false);
+    const location = useLocation();
+
+    function redirectToSearchPage() {
+        console.log(location.pathname);
+        if (location.pathname !== '/search') {
+            setRedirectToSearch(true);
+        }
+    };
     return (
         <SearchProvider config={config}>
             <WithSearch
@@ -48,28 +62,31 @@ export default function Search() {
                 {({ searchTerm, setSearchTerm, results, autocompletedResults }) => {
                     return (
                         <div className="search">
+                            { redirectToSearch && <Redirect to='/search' />}
                             <ErrorBoundary>
-                                <div className="searchbar-wrapper body-padding row">
-                                    <p className="text-small col-md-offset-4 col-md-5">Lees over een specifiek onderwerp</p>
-                                    <div className="searchbar col-md-offset-4 col-md-5">
-                                        <span className="material-icons material-icons-m">
-                                            search
+                                <div className={`searchbar-wrapper body-padding`}>
+                                    <div className="row">
+                                        <p className="text-small col-md-offset-4 col-md-5">Lees over een specifiek onderwerp</p>
+                                        <div className="searchbar col-md-offset-4 col-md-5">
+                                            <span className="material-icons material-icons-m">
+                                                search
                                     </span>
-                                        <input
-                                            value={searchTerm}
-                                            onChange={e => setSearchTerm(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="searchbar-line">
+                                            <input
+                                                value={searchTerm}
+                                                onChange={e => setSearchTerm(e.target.value)}
+                                                onClick={redirectToSearchPage}
+                                            />
+                                        </div>
+                                        <div className="searchbar-line">
+                                        </div>
                                     </div>
                                 </div>
                                 {results.length > 0 &&
-                                    <div className="search-result-wrapper">
+                                    <div className="search-result-wrapper body-padding">
                                         {results.map(r => (
-                                            <Article key={r?.id?.raw}
+                                            <SearchArticle key={r?.id?.raw}
                                                 article={r}
-                                            >
-                                            </Article>
+                                            />
                                         ))}
                                     </div>
                                 }
