@@ -1,0 +1,135 @@
+@import './variables.scss';
+@import url('https: //fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Montserrat:wght@700&display=swap');
+
+* {
+    font-family: 'Karla', sans-serif;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'Material Icons Round';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialiconsround/v55/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons Round';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.material-icons-s {
+    font-size: 15px;
+}
+
+.material-icons-m {
+    font-size: 24px;
+}
+
+.material-icons-xl {
+    font-size: 40px;
+}
+
+
+.title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin: 0.5em 0 0 0;
+    text-decoration: none;
+    color: $black;
+}
+
+.side-title {
+    font-family: 'Montserrat',
+        sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    color: $black;
+}
+
+.page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    text-decoration: none;
+    color: $black;
+}
+
+.nav-section-title {
+    font-family: 'Karla',
+        sans-serif;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: $black;
+    font-weight: 700;
+}
+
+.text {
+    font-family: 'Karla', sans-serif;
+    font-size: 1rem;
+    margin: 0.5rem 0 0 0;
+    color: $black;
+    text-decoration: none;
+}
+
+.text-small {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.75rem;
+    color: $black;
+    text-decoration: none;
+}
+
+.text-intro,
+.nav-link {
+    font-family: 'Karla',
+        sans-serif;
+    font-size: 1.25rem;
+    color: $black;
+    text-decoration: none;
+}
+
+.text-over-image {
+    font-family: 'Karla', sans-serif;
+    text-decoration: none;
+    color: $white;
+    font-size: 1.5em;
+    text-shadow: 0 0 6px $black,
+        0 0 6px $black,
+        0 0 6px $black;
+}
+
+.grey {
+    color: $grey;
+}
+
+.text-emphasis {
+    text-decoration: underline wavy $pink;
+}
+
+.text-emphasis:hover {
+    font-style: italic;
+}

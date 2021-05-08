@@ -1,0 +1,73 @@
+@import '../variables.scss';
+
+.article {
+    margin-top: $spacer;
+    position: relative;
+    right: -0.5rem;
+
+    @media screen and (max-width: 1024px) {}
+
+    @media screen and (max-width: 600px) {}
+
+    img {
+        width: 100%;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .article-image-wrapper {
+        position: relative;
+        overflow: hidden;
+
+        .article-source-wrapper {
+            position: absolute;
+            bottom: $spacer-s;
+            left: $spacer-s;
+            display: flex;
+            align-items: flex-end;
+
+            img {
+                width: 48px;
+                height: 48px;
+                border-radius: 10px;
+            }
+
+            span {
+                margin-left: $spacer-xs
+            }
+        }
+    }
+}
+
+.desktop-related {
+    margin-top: 1rem;
+    max-height: 400px;
+    overflow: hidden;
+
+    .desktop-related-article {
+        display: inline-flex;
+        margin-top: 1rem;
+
+        img {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            margin-right: 1rem;
+            opacity: 0.75;
+        }
+
+        h4 {
+            opacity: 0.6;
+        }
+
+    }
+
+    .desktop-related-article:hover {
+
+        img,
+        h4 {
+            opacity: 1;
+        }
+    }
+}

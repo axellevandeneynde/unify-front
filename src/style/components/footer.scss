@@ -1,0 +1,12 @@
+footer {
+    background-color: $black;
+    min-height: 15vh;
+    margin-top: 3em;
+    box-sizing: border-box;
+
+    p {
+        color: white;
+        text-align: center;
+        margin: 5vh 0;
+    }
+}
