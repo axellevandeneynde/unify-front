@@ -2,4 +2,11 @@
 
 .feed {
     margin-top: 4rem;
+
+    @media screen and (max-width: 62rem) {
+        h1 {
+            padding: 0;
+        }
+    }
+
 }

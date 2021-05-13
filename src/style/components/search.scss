@@ -1,28 +1,41 @@
 @import '../variables.scss';
 
 .searchbar {
-    height: 1.5rem;
-    box-shadow: $shadow;
-    border-radius: 0.6rem;
     display: flex;
-    padding: 0 0.5rem;
-    background-color: $white;
+
+    span {
+        z-index: 42;
+    }
 
     input {
         border: none;
+        height: 1.5rem;
+        box-shadow: $shadow;
+        border-radius: 0.6rem;
+        display: flex;
+        background-color: $white;
+        padding-left: 2rem;
+        position: relative;
+        left: -1.9rem;
         width: 100%;
+        z-index: 41;
     }
 }
 
 .searchbar-wrapper {
     padding-top: 1rem;
     padding-bottom: 1.5rem;
-    // box-sizing: content-box;
     position: fixed;
+
+    @media screen and (max-width: 62rem) {
+        position: relative;
+        top: 4rem
+    }
+
     width: 100vw;
     overflow: visible;
     background-color: $white;
-    z-index: 99;
+    z-index: 40;
     top: 0;
     box-sizing: border-box;
 
@@ -40,18 +53,12 @@
         box-sizing: border-box;
         position: absolute;
         bottom: 0;
-
+        left: 0;
     }
 
 }
 
 .search-result-wrapper {
-    z-index: 50;
-    background-color: $white;
     min-height: 80vh;
-    padding-top: 6.5rem;
-
-    .article {
-        z-index: 51;
-    }
+    margin-top: 6.5rem;
 }

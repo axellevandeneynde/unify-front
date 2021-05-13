@@ -49,6 +49,7 @@ export default function Search() {
             setRedirectToSearch(true);
         }
     };
+
     return (
         <SearchProvider config={config}>
             <WithSearch
@@ -66,16 +67,18 @@ export default function Search() {
                             <ErrorBoundary>
                                 <div className={`searchbar-wrapper body-padding`}>
                                     <div className="row">
-                                        <p className="text-small col-md-offset-4 col-md-5">Lees over een specifiek onderwerp</p>
-                                        <div className="searchbar col-md-offset-4 col-md-5">
-                                            <span className="material-icons material-icons-m">
-                                                search
+                                        <p className="text-small col-xs-12 col-md-offset-5 col-md-5">Lees over een specifiek onderwerp</p>
+                                        <div className="col-xs-12 col-md-offset-5 col-md-5">
+                                            <div className="searchbar">
+                                                <span className="material-icons material-icons-m">
+                                                    search
                                     </span>
-                                            <input
-                                                value={searchTerm}
-                                                onChange={e => setSearchTerm(e.target.value)}
-                                                onClick={redirectToSearchPage}
-                                            />
+                                                <input
+                                                    value={searchTerm}
+                                                    onChange={e => setSearchTerm(e.target.value)}
+                                                    onClick={redirectToSearchPage}
+                                                />
+                                            </div>
                                         </div>
                                         <div className="searchbar-line">
                                         </div>
@@ -83,6 +86,9 @@ export default function Search() {
                                 </div>
                                 {results.length > 0 &&
                                     <div className="search-result-wrapper body-padding">
+                                        <div className="row">
+                                            <p className="col-md-offset-5 col-md-5 text-small">er werden {results.length} artikels gevonden</p>
+                                        </div>
                                         {results.map(r => (
                                             <SearchArticle key={r?.id?.raw}
                                                 article={r}
