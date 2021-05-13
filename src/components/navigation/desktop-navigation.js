@@ -16,7 +16,7 @@ export default function DesktopNavigation() {
                         >
                             <span className="material-icons material-icons-m">
                                 search
-                    </span> Nieuws opzoeken
+                    </span> zoeken
                 </NavLink>
                         <NavLink className='nav-link'
                             to="/bookmarks"
@@ -29,7 +29,7 @@ export default function DesktopNavigation() {
                     </span> Opgeslagen artikels
                 </NavLink>
                     </div>
-                    <div>
+                    <div className='nav-section-wrapper'>
                         <h6 className='nav-section-title'>Feeds</h6>
                         <NavLink className='nav-link'
                             to="/home"
@@ -40,6 +40,16 @@ export default function DesktopNavigation() {
                             <span className="material-icons material-icons-m">
                                 article
                     </span>  Algemeen nieuws
+                </NavLink>
+                        <NavLink className='nav-link'
+                            to="/create-feed"
+                            activeStyle={{
+                                fontWeight: 700,
+                            }}
+                        >
+                            <span className="material-icons material-icons-m">
+                                add
+                    </span> nieuwe feed
                 </NavLink>
                     </div>
                 </div>

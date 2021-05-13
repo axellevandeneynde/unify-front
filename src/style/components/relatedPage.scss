@@ -1,0 +1,27 @@
+.related-page {
+    .title.row {
+        margin-top: 6rem;
+
+        @media screen and (max-width: 62rem) {
+            span {
+                display: none;
+            }
+        }
+    }
+
+    .article-image-wrapper {
+        img {
+            height: 200px;
+        }
+    }
+
+    @media screen and (max-width: 62rem) {
+        .search {
+            display: none;
+        }
+
+        h1 {
+            padding: 0;
+        }
+    }
+}

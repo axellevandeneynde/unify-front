@@ -1,0 +1,16 @@
+.button {
+    width: 100%;
+    height: 1.5rem;
+    box-shadow: $shadow;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    &-white {
+        background-color: $white;
+    }
+}
+
+.button:hover {
+    transform: scaleX(0.98);
+}

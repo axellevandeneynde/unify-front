@@ -5,19 +5,12 @@
     box-shadow: $shadow;
     left: 0;
     top: 0;
-    z-index: 100;
-    padding-left: $spacer;
+    z-index: 50;
+    padding: 0 1rem;
     width: calc(100%/6 + 1rem);
 
-    .nav-main-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top: 4rem;
-
-        .nav-section-wrapper {
-            padding: $spacer 0;
-        }
+    @media screen and (max-width: 62rem) {
+        display: none;
     }
 
     img {
@@ -30,9 +23,88 @@
 
 }
 
+.nav-main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5rem;
+
+    .nav-section-wrapper {
+        padding: 1rem 0;
+        margin-top: 1rem;
+    }
+}
+
 .nav-link {
     display: block;
     display: flex;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+
+    span {
+        margin-right: 0.5rem;
+    }
+}
+
+.mobile-nav-open {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .nav-section-wrapper {
+        padding: 1rem 2rem;
+    }
+
+    .nav-section-wrapper:last-child {
+        background-color: $light-grey
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: $shadow;
+    background-color: $white;
+    z-index: 50;
+    height: 4rem;
+    margin-bottom: 0.5rem;
+    position: fixed;
+    width: 100vw;
+    overflow: visible;
+    background-color: #ffffff;
+    top: 0;
+    box-sizing: border-box;
+
+    @media screen and (min-width: 62rem) {
+        display: none;
+    }
+
+    a {
+        height: 70%;
+
+        img {
+            height: 100%
+        }
+    }
+}
+
+.headerHidden,
+.navClosed {
+    display: none;
+}
+
+.open-nav-header {
+    display: flex;
+    justify-content: space-between;
+    height: 4rem;
+    align-items: center;
+
+    a {
+        height: 70%;
+
+        img {
+            height: 100%
+        }
+    }
 }

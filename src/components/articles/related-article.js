@@ -1,10 +1,10 @@
-import PreviewRelatedArticles from './preview-related-articles';
 import SourceInfo from './source-info';
 
-export default function Article(props) {
+export default function RelatedArticle(props) {
+
     return (
-        <div className="row" >
-            <div className="article col-md-offset-3 col-md-5">
+        <div className="col-md-3">
+            <div className="article">
                 <div className="article-image-wrapper">
                     <a href={props.article.url.raw} target="_blank" rel='noreferrer'>
                         <img src={props.article.image.raw} alt=""></img>
@@ -22,13 +22,9 @@ export default function Article(props) {
                             open_in_new
                     </span>
                     </h3>
-
                 </a>
                 <span className="text-small grey">{props.article.date.raw}</span>
                 <p className="text">{props.article.description.raw}</p>
-            </div>
-            <div className="col-xs-12 col-md-4 preview-related-articles-wrapper">
-                <PreviewRelatedArticles article={props.article}></PreviewRelatedArticles>
             </div>
         </div>
     )
