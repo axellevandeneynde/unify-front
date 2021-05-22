@@ -11,7 +11,7 @@ export default function Feed() {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        if (articles.length === 0) {
+        if (feedLoading === true) {
             fetch(`${process.env.REACT_APP_ELASTIC_URL}/api/as/v1/engines/unify/search`, {
                 method: 'POST',
                 headers: {
@@ -34,6 +34,7 @@ export default function Feed() {
                 })
             }).then(res => res.json())
                 .then(data => {
+                    console.log(data);
                     setArticles(data.results.map(article =>
                         < Article key={article?.id?.raw} article={article}></Article>
                     ))

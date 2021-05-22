@@ -1,9 +1,15 @@
 import logo from '../../assets/logo.svg';
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { useHistory } from "react-router-dom";
+import { useRecoilValue } from 'recoil';
+import { navBackBtnAtom } from './store';
 
 export default function MobileNavigation() {
     const [isOpen, setiIsOpen] = useState(false);
+    const navBackBtn = useRecoilValue(navBackBtnAtom);
+
+    let history = useHistory();
 
     function openMenu() {
         setiIsOpen(true);
@@ -14,6 +20,11 @@ export default function MobileNavigation() {
     return (
         <div className="mobile-nav">
             <div className={`${!isOpen ? 'header' : 'headerHidden'} body-padding`}>
+                {navBackBtn &&
+                    <span onClick={history.goBack} className="material-icons material-icons-xl">
+                        arrow_back
+                </span>
+                }
                 <Link to="/"><img src={logo} alt="unify-logo" /></Link>
                 <span onClick={openMenu} className="material-icons material-icons-xl">
                     menu

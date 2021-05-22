@@ -1,5 +1,6 @@
 @import './typography.scss';
 @import './layout.scss';
+@import './utilities.scss';
 
 @import './components/search.scss';
 @import './components/article.scss';
@@ -11,8 +12,11 @@
 @import './components/title.scss';
 @import './components/button.scss';
 @import './components/source-info.scss';
+@import './components/progress-bar.scss';
+@import './components/login.scss';
 
 @import './components/homePage.scss';
 @import './components/relatedPage.scss';
+@import './components/create-feed-page.scss';
 
 @import 'flexboxgrid/css/flexboxgrid.min.css'
