@@ -3,4 +3,39 @@
     right: 20px;
     top: 20px;
     z-index: 300;
+    background-color: $yellow;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    button {
+        width: 100%;
+        background-color: $yellow;
+        border: none;
+        cursor: pointer;
+    }
+
+    .login-name {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        img {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5rem;
+            border-radius: 5px;
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .login-menu {
+        margin-top: 0.5rem;
+        width: 100%;
+    }
 }

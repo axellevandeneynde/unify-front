@@ -1,16 +1,19 @@
 import '../assets/background-logo.svg';
 import { progressAtom, selectedLocationsAtom, selectedSourcesAtom, selectedCategoriesAtom } from './store';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
-import { Link } from "react-router-dom";
-import { useEffect } from 'react';
+import { Link, Redirect } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function Confirm() {
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const setProgress = useSetRecoilState(progressAtom);
     const selectedLocations = useRecoilValue(selectedLocationsAtom);
     const selectedCategories = useRecoilValue(selectedCategoriesAtom);
     const selectedSources = useRecoilValue(selectedSourcesAtom);
+    const [feedCreated, setFeedCreated] = useState(false);
     useEffect(() => setProgress(4));
 
 
@@ -23,9 +26,30 @@ export default function Confirm() {
                 feedName: 'mijn persoonlijke feed'
             }}
             onSubmit={async (feedName) => {
-                // handle submitting of new feed here
+                console.log(user);
+                const accessToken = await getAccessTokenSilently();
+                fetch('http://localhost:3001/create-new-feed', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                    body: JSON.stringify({
+                        user: user,
+                        feed: {
+                            name: feedName,
+                            categories: selectedCategories,
+                            regions: selectedLocations,
+                            sources: selectedSources
+                        }
+                    })
+                }).then((res) => res.json()
+                ).then(data => {
+                    setFeedCreated(true);
+                    console.log(data)
+                });
             }}>
-            {({ submitForm }) => (
+            {() => (
                 <Form>
                     <div className="input-wrapper">
                         <Field className="input"
@@ -72,10 +96,11 @@ export default function Confirm() {
                             </span></button>
                         </Link>
                     </div>
-                    {/* to do: set link to new feed */}
-                    <Link to='/home'>
-                        <button type="submit" className='side-title button yellow fixed-button'>NAAR MIJN FEED</button>
-                    </Link>
+                    <button type="submit" className='side-title button yellow fixed-button'>NAAR MIJN FEED</button>
+                    {
+                        feedCreated &&
+                        <Redirect to='/home'></Redirect>
+                    }
                 </Form>
             )}
         </Formik>

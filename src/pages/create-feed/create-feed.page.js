@@ -5,6 +5,7 @@ import {
     useRouteMatch,
     Redirect
 } from "react-router-dom";
+import ProtectedRoute from '../../auth/Protected-route';
 import ProgressBar from '../../components/progress-bar';
 import GetStarted from './get-started';
 import LocationQuestion from './location-question';
@@ -42,21 +43,11 @@ export default function CreateFeedPage() {
     return (
         <div className='create-feed-wrapper body-padding row'>
             <Switch>
-                <Route path={`/create-feed/get-started`}>
-                    <GetStarted></GetStarted>
-                </Route>
-                <Route path={`${match.path}/locations`}>
-                    <LocationQuestion></LocationQuestion>
-                </Route>
-                <Route path={`${match.path}/about`}>
-                    <AboutQuestion></AboutQuestion>
-                </Route>
-                <Route path={`${match.path}/sources`}>
-                    <SourcesQuestion></SourcesQuestion>
-                </Route>
-                <Route path={`${match.path}/confirm`}>
-                    <Confirm></Confirm>
-                </Route>
+                <ProtectedRoute path={`/create-feed/get-started`} component={GetStarted} />
+                <ProtectedRoute path={`${match.path}/locations`} component={LocationQuestion} />
+                <ProtectedRoute path={`${match.path}/about`} component={AboutQuestion} />
+                <ProtectedRoute path={`${match.path}/sources`} component={SourcesQuestion} />
+                <ProtectedRoute path={`${match.path}/confirm`} component={Confirm} />
                 <Route path="/create-feed">
                     <Redirect to={`${match.path}/get-started`} />
                 </Route>

@@ -1,0 +1,11 @@
+.user-feed-page {
+    .title.row {
+        margin-top: 6rem;
+
+        @media screen and (max-width: 62rem) {
+            span {
+                display: none;
+            }
+        }
+    }
+}

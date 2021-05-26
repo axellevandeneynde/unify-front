@@ -4,6 +4,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import ProtectedRoute from './auth/Protected-route';
 
 import { RecoilRoot } from 'recoil';
 
@@ -13,7 +14,9 @@ import Navigation from "./components/navigation/navigation";
 import Search from "./components/search/search";
 import RelatedPage from './pages/related.page';
 import CreateFeedPage from './pages/create-feed/create-feed.page';
+import UserFeedPage from './pages/user-feed.page';
 import { Auth0Provider } from "@auth0/auth0-react";
+import BookmarksPage from "./pages/bookmarks/bookmarks.page";
 
 function App() {
   return (
@@ -37,9 +40,9 @@ function App() {
               <HomePage />
             </Route>
             <Route path="/related/:searchQuery" component={RelatedPage} />
-            <Route path="/create-feed">
-              <CreateFeedPage />
-            </Route>
+            <ProtectedRoute path="/create-feed" component={CreateFeedPage} />
+            <Route path="/user-feed/:userFeedName" component={UserFeedPage} />
+            <ProtectedRoute path="/bookmarks" component={BookmarksPage} />
             <Route path="/">
               <Redirect to='/home' />
             </Route>
