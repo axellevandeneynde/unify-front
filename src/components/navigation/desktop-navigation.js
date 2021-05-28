@@ -42,7 +42,7 @@ export default function DesktopNavigation() {
                                 search
                     </span> zoeken
                 </NavLink>
-                        <NavLink className='nav-link'
+                        <NavLink className={`nav-link ${!isAuthenticated ? 'grey' : ''}`}
                             to="/bookmarks"
                             activeStyle={{
                                 fontWeight: 700,

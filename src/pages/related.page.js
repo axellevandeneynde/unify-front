@@ -34,8 +34,11 @@ export default function RelatedPage(props) {
                     if (!_.isNil(data.results)) {
                         const relevant = data.results.filter(result => result._meta.score >= 2);
                         setRelated(relevant.map((article, i) => {
-                            if (i % 4 === 0) {
-                                return <div className="col-md-3"></div>
+                            if (i % 3 === 0) {
+                                return <>
+                                    <div className="col-md-3"></div>
+                                    <RelatedArticle article={article} key={`related${i}`} />
+                                </>
                             }
                             return <RelatedArticle article={article} key={`related${i}`} />
                         }));
@@ -50,7 +53,7 @@ export default function RelatedPage(props) {
 
     return (<div className="related-page">
         < Search></Search >
-        < div className="body-padding" >
+        < div className="body-padding">
             <Title title="gerelateerde artikels" icon="arrow_back"></Title>
             <div className="row">
                 {related}

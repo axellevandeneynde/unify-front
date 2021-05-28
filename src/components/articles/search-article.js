@@ -1,4 +1,6 @@
 import SourceInfo from './source-info';
+import Bookmark from '../bookmark';
+import Date from './date';
 
 export default function SearchArticle(props) {
     return (
@@ -8,6 +10,7 @@ export default function SearchArticle(props) {
                     <a href={props.article.url.raw} target="_blank" rel='noreferrer'>
                         <img src={props.article.image.raw} alt=""></img>
                     </a>
+                    <Bookmark articleId={props.article.id.raw}></Bookmark>
                     <SourceInfo
                         name={props.article.source_name.raw}
                         logo={props.article.source_logo.raw}
@@ -22,7 +25,7 @@ export default function SearchArticle(props) {
                     </span>
                     </h3>
                 </a>
-                <span className="text-small grey">{props.article.date.raw}</span>
+                <Date date={props.article.date.raw}></Date>
                 <p className="text">{props.article.description.raw}</p>
             </div>
         </div>

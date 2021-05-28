@@ -2,21 +2,23 @@
 
 .searchbar {
     display: flex;
+    align-items: center;
 
     span {
         z-index: 42;
+        position: absolute;
+        margin-left: 0.3rem;
     }
 
     input {
         border: none;
-        height: 1.5rem;
+        height: 1.7rem;
         box-shadow: $shadow;
         border-radius: 0.6rem;
         display: flex;
         background-color: $white;
         padding-left: 2rem;
         position: relative;
-        left: -1.9rem;
         width: 100%;
         z-index: 41;
     }

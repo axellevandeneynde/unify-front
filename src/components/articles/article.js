@@ -1,3 +1,5 @@
+import Bookmark from '../bookmark';
+import Date from './date';
 import PreviewRelatedArticles from './preview-related-articles';
 import SourceInfo from './source-info';
 
@@ -9,6 +11,7 @@ export default function Article(props) {
                     <a href={props.article.url.raw} target="_blank" rel='noreferrer'>
                         <img src={props.article.image.raw} alt=""></img>
                     </a>
+                    <Bookmark articleId={props.article.id.raw}></Bookmark>
                     <SourceInfo
                         name={props.article.source_name.raw}
                         logo={props.article.source_logo.raw}
@@ -24,7 +27,7 @@ export default function Article(props) {
                     </h3>
 
                 </a>
-                <span className="text-small grey">{props.article.date.raw}</span>
+                <Date date={props.article.date.raw}></Date>
                 <p className="text">{props.article.description.raw}</p>
             </div>
             <div className="col-xs-12 col-md-4 preview-related-articles-wrapper">

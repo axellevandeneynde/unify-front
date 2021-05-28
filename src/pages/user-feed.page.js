@@ -6,6 +6,8 @@ import { userFeedsAtom } from '../components/navigation/store';
 import { useRecoilValue } from 'recoil';
 import Loading from '../components/loading';
 import Login from '../components/login/login';
+import { useHistory } from "react-router-dom";
+
 const _ = require('lodash');
 
 export default function UserFeedPage(props) {
@@ -13,24 +15,17 @@ export default function UserFeedPage(props) {
     const feeds = useRecoilValue(userFeedsAtom);
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [previousHistory, setPreviousHistory] = useState('')
+    let history = useHistory();
+
     useEffect(() => {
         const thisFeed = feeds.find(feed => feed.name.feedName.toLowerCase() === feedName.toLowerCase());
 
-        if (articles.length === 0 && loading === true && !_.isNil(thisFeed)) {
-            let regions;
-            let categories;
-            let array = thisFeed?.regions.map(item => item.id.toLowerCase())
-            if (array.length === 1) {
-                regions = array[0]
-            } else {
-                regions = array;
+        if ((articles?.length === 0 && loading === true && !_.isNil(thisFeed)) || previousHistory !== history.location.pathname) {
+            if (previousHistory !== history.location.pathname) {
+                setLoading(true);
             }
-            array = thisFeed?.categories.map(item => item.id.toLowerCase())
-            if (array.length === 1) {
-                categories = array[0]
-            } else {
-                categories = array;
-            }
+
             fetch(`${process.env.REACT_APP_ELASTIC_URL}/api/as/v1/engines/unify/search`, {
                 method: 'POST',
                 headers: {
@@ -40,26 +35,20 @@ export default function UserFeedPage(props) {
                 body: JSON.stringify({
                     query: '',
                     filters: {
-                        all: [
-                            {
-                                source_regions: regions
-                            },
-                            {
-                                source_categories: categories
-                            }
-                        ],
+                        all: getFilters(thisFeed)
                     }
                 })
             }).then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    setArticles(data.results.map(article =>
+                    setArticles(data?.results?.map(article =>
                         < Article key={article?.id?.raw} article={article}></Article>
                     ))
                     setLoading(false);
                 }
                 )
         }
+        setPreviousHistory(history.location.pathname);
 
     })
 
@@ -67,15 +56,51 @@ export default function UserFeedPage(props) {
         < Search></Search >
         <Login></Login>
         < div className="body-padding" >
+            <Title title={feedName} icon="article" color="green"></Title>
+            {articles}
             {
                 loading &&
                 <Loading />
             }
-            <Title title={feedName} icon="article" color="green"></Title>
-            {articles}
         </div >
     </div >
     );
 
 
+}
+
+function getFilters(thisFeed) {
+    let filters = [];
+    let filter = [];
+
+    console.log(filter);
+    filter = thisFeed?.regions?.map(item => item.id.toLowerCase()) || [];
+    if (filter.length !== 0) {
+        if (filter.length === 1) {
+            filters.push({ source_regions: filter[0] })
+        } else {
+            filters.push({ source_regions: filter })
+        }
+    }
+
+    filter = thisFeed?.categories?.map(item => item.id.toLowerCase()) || [];
+    if (filter.length !== 0) {
+        if (filter.length === 1) {
+            filters.push({ source_categories: filter[0] })
+        } else {
+            filters.push({ source_categories: filter })
+        }
+    }
+
+
+    filter = thisFeed?.sources?.map(item => item.name) || [];
+    if (filter.length !== 0) {
+        if (filter.length === 1) {
+            filters.push({ source_name: filter[0] })
+        } else {
+            filters.push({ source_name: filter })
+        }
+    }
+    console.log(filters);
+    return filters;
 }

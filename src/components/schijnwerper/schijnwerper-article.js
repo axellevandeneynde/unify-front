@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Date from '../articles/date';
 import SourceInfo from '../articles/source-info';
+import Bookmark from '../bookmark';
 const _ = require('lodash');
 
 export default function SchijnwerperArticle(props) {
@@ -47,6 +49,7 @@ export default function SchijnwerperArticle(props) {
                 <a href={props.article.url} target="_blank" rel='noreferrer'>
                     <img src={props.article.image} alt=""></img>
                 </a>
+                <Bookmark articleId={props.article.id}></Bookmark>
                 <SourceInfo
                     name={props.article.source_name}
                     logo={props.article.source_logo}
@@ -63,7 +66,7 @@ export default function SchijnwerperArticle(props) {
                     </h3>
                     <span className="schijnwerper-title-line"></span>
                 </a>
-                <span className="text-small grey">{props.article.date}</span>
+                <Date date={props.article.date}></Date>
                 <p className="text">{props.article.description}</p>
 
                 {numberOfResults === 1 &&

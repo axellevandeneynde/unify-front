@@ -1,7 +1,8 @@
-.related-page {
-    .title.row {
-        margin-top: 6rem;
+.related-page,
+.bookmarks-page {
+    margin-top: 7rem;
 
+    .title.row {
         @media screen and (max-width: 62rem) {
             span {
                 display: none;

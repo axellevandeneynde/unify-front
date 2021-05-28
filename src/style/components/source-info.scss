@@ -78,3 +78,7 @@
         margin-left: $spacer-xs
     }
 }
+
+.article-source-wrapper:hover {
+    transform: scale(1.03);
+}
