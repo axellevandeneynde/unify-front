@@ -30,7 +30,7 @@ export default function AboutQuestion() {
                         }
                     }}
                 >
-                    <span class="material-icons">
+                    <span className="material-icons">
                         {category.icon}
                     </span>
                     <span className="label">{category.name}</span>

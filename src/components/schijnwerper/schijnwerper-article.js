@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Date from '../articles/date';
+import Image from '../articles/image';
 import SourceInfo from '../articles/source-info';
 import Bookmark from '../bookmark';
 const _ = require('lodash');
@@ -45,17 +46,19 @@ export default function SchijnwerperArticle(props) {
 
     return (
         <div className={`schijnwerper-article ${props.side} row`}>
-            <div className={`schijnwerper-article-image-wrapper ${props.side !== 'reverse' ? 'col-md-offset-3' : ''} col-md-4`}>
-                <a href={props.article.url} target="_blank" rel='noreferrer'>
-                    <img src={props.article.image} alt=""></img>
-                </a>
-                <Bookmark articleId={props.article.id}></Bookmark>
-                <SourceInfo
-                    name={props.article.source_name}
-                    logo={props.article.source_logo}
-                    website={props.article.source_website}
-                    description={props.article.source_description}
-                ></SourceInfo>
+            <div className={`${props.side !== 'reverse' ? 'col-md-offset-3' : ''} col-md-4`}>
+                <div className="schijnwerper-article-image-wrapper">
+                    <a href={props.article.url} target="_blank" rel='noreferrer'>
+                        <Image url={props.article.image} />
+                    </a>
+                    <Bookmark articleId={props.article.id}></Bookmark>
+                    <SourceInfo
+                        name={props.article.source_name}
+                        logo={props.article.source_logo}
+                        website={props.article.source_website}
+                        description={props.article.source_description}
+                    ></SourceInfo>
+                </div>
             </div>
             <div className={`schijnwerper-article-text-wrapper ${props.side === 'reverse' ? 'col-md-offset-3' : ''} col-md-5`}>
                 <a href={props.article.url} target="_blank" rel='noreferrer'>
@@ -70,13 +73,13 @@ export default function SchijnwerperArticle(props) {
                 <p className="text">{props.article.description}</p>
 
                 {numberOfResults === 1 &&
-                    <Link to={`/related/${searchQueries.join('--').slice(0, 127)}`}>
+                    <Link to={`/related/${searchQueries.join('--').slice(0, 127).replace(/%/g, '')}`}>
                         <button className="button button-white">{numberOfResults} ander artikel over dit</button>
                     </Link>
                 }
 
                 {numberOfResults > 1 &&
-                    <Link to={`/related/${searchQueries.join('--').slice(0, 127)}`}>
+                    <Link to={`/related/${searchQueries.join('--').slice(0, 127).replace(/%/g, '')}`}>
                         <button className="button button-white">{numberOfResults} andere artikels over dit</button>
                     </Link>
                 }

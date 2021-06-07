@@ -8,7 +8,7 @@ export default function Bookmark(props) {
     async function bookmark() {
         const accessToken = await getAccessTokenSilently();
         if (!isBookmarked) {
-            fetch('http://localhost:3001/create-bookmark', {
+            fetch(`${process.env.REACT_APP_UNIFY_BACK}/create-bookmark`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export default function Bookmark(props) {
                 setIsBookmarked(true);
             });
         } else {
-            fetch('http://localhost:3001/delete-bookmark', {
+            fetch(`${process.env.REACT_APP_UNIFY_BACK}/delete-bookmark`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

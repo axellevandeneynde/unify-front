@@ -67,8 +67,8 @@ export default function Search() {
                             <ErrorBoundary>
                                 <div className={`searchbar-wrapper body-padding`}>
                                     <div className="row">
-                                        <p className="text-small col-xs-12 col-md-offset-5 col-md-5">Lees over een specifiek onderwerp</p>
-                                        <div className="col-xs-12 col-md-offset-5 col-md-5">
+                                        <p className="text-small col-xs-12 col-md-offset-4 col-md-6">Lees over een specifiek onderwerp</p>
+                                        <div className="col-xs-12 col-md-offset-4 col-md-6">
                                             <div className="searchbar">
                                                 <span className="material-icons material-icons-m">
                                                     search
@@ -87,7 +87,7 @@ export default function Search() {
                                 {results.length > 0 &&
                                     <div className="search-result-wrapper body-padding">
                                         <div className="row">
-                                            <p className="col-md-offset-5 col-md-5 text-small">er werden {results.length} artikels gevonden</p>
+                                            <p className="col-md-offset-4 col-md-6 text-small">er werden {results.length} artikels gevonden</p>
                                         </div>
                                         {results.map(r => (
                                             <SearchArticle key={r?.id?.raw}

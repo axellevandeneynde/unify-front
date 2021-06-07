@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Image from './image';
 const _ = require('lodash');
 
 export default function PreviewRelatedArticles(props) {
@@ -44,32 +45,20 @@ export default function PreviewRelatedArticles(props) {
 
     const relatedArticles =
         related.map(relatedArticle => {
-            return <div key={relatedArticle.id.raw} className='desktop-related-article'>
-                <img src={relatedArticle.source_logo.raw} alt={relatedArticle.source_name.raw}></img>
+            return <div key={`related${relatedArticle.id.raw}`} className='desktop-related-article'>
+                <Image url={relatedArticle.source_logo.raw} alt={relatedArticle.source_name.raw}></Image>
                 <a href={relatedArticle.url.raw} target="_blank" rel="noreferrer"><h4 className="side-title">{relatedArticle.title.raw} <span className="material-icons material-icons-s">open_in_new</span></h4></a>
             </div>
         })
 
     return (
         <div className="desktop-related">
+            <p className="grey">{numberOfResults} gerelateered artikels gevonden</p>
             {relatedArticles}
-            { numberOfResults - relatedArticles.length === 1 &&
-                <Link to={`/related/${searchQueries.raw.join('--').slice(0, 127)}`}>
-                    <button className="button button-white">{numberOfResults - relatedArticles.length} ander artikel over dit</button>
+            { relatedArticles.length >= 1 &&
+                <Link to={`/related/${searchQueries.raw.join('--').slice(0, 127).replace(/%/g, '')}`}>
+                    <button className="button button-white">Alle gerelateerde artikels</button>
                 </Link>
-            }
-            { numberOfResults - relatedArticles.length > 1 &&
-                <Link to={`/related/${searchQueries.raw.join('--').slice(0, 127)}`}>
-                    <button className="button button-white">{numberOfResults - relatedArticles.length} andere artikels over dit</button>
-                </Link>
-            }
-            { (numberOfResults - relatedArticles.length === 0 && numberOfResults !== 0) &&
-                <Link to={`/related/${searchQueries.raw.join('--').slice(0, 127)}`}>
-                    <button className="button button-white">{numberOfResults - relatedArticles.length} andere artikels over dit</button>
-                </Link >
-            }
-            { numberOfResults === 0 &&
-                <p>Sorry, we vonden geen gerelateerde artikels</p>
             }
         </div >
     )

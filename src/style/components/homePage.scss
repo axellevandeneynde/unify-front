@@ -1,3 +1,9 @@
 .home-page {
     z-index: -51;
+
+    @media screen and (max-width: 62rem) {
+        .login {
+            display: none;
+        }
+    }
 }

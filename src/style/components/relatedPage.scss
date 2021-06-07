@@ -11,7 +11,9 @@
     }
 
     .article-image-wrapper {
-        img {
+
+        img,
+        .imagePlaceholder {
             height: 200px;
         }
     }

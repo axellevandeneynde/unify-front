@@ -10,7 +10,7 @@ export default function Schijnwerper() {
 
     useEffect(() => {
         if (articles.length === 0) {
-            fetch('http://localhost:3001/schijnwerper-articles').then(res => res.json())
+            fetch(`${process.env.REACT_APP_UNIFY_BACK}/schijnwerper-articles`).then(res => res.json())
                 .then(data => {
                     setArticles(data.map((article, i) => {
                         if (i % 2) {

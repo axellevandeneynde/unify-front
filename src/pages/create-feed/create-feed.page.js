@@ -27,13 +27,13 @@ export default function CreateFeedPage() {
     useEffect(() => {
         setNavBackBtn(true);
         if (allLocations.length === 0) {
-            fetch('http://localhost:3001/news-locations').then(res => res.json())
+            fetch(`${process.env.REACT_APP_UNIFY_BACK}/news-locations`).then(res => res.json())
                 .then(data => {
                     setAllLoactions(data)
                 })
         }
         if (allCategories.length === 0) {
-            fetch('http://localhost:3001/news-categories').then(res => res.json())
+            fetch(`${process.env.REACT_APP_UNIFY_BACK}/news-categories`).then(res => res.json())
                 .then(data => {
                     setAllCategories(data)
                 })
@@ -47,6 +47,7 @@ export default function CreateFeedPage() {
                 <ProtectedRoute path={`${match.path}/locations`} component={LocationQuestion} />
                 <ProtectedRoute path={`${match.path}/about`} component={AboutQuestion} />
                 <ProtectedRoute path={`${match.path}/sources`} component={SourcesQuestion} />
+                <ProtectedRoute path={`${match.path}/confirm/:id`} component={Confirm} />
                 <ProtectedRoute path={`${match.path}/confirm`} component={Confirm} />
                 <Route path="/create-feed">
                     <Redirect to={`${match.path}/get-started`} />

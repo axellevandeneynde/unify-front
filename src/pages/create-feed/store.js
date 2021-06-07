@@ -38,3 +38,8 @@ export const selectedSourcesAtom = atom({
     key: 'selectedSources',
     default: [],
 });
+
+export const updateFeedIdAtom = atom({
+    key: 'updateFeedId',
+    default: null,
+});

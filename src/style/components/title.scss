@@ -2,7 +2,6 @@
 
 .title {
     position: relative;
-    z-index: -50;
     margin-top: 1rem;
 
     &-tab {
@@ -48,7 +47,15 @@
     }
 
     .icon-arrow_back {
+
         font-size: 3rem;
+        cursor: pointer;
+    }
+
+    .settings-icon {
+        text-align: right;
+        justify-content: flex-end;
+        color: $black;
         cursor: pointer;
     }
 }

@@ -1,41 +1,87 @@
-.login {
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    z-index: 300;
-    background-color: $yellow;
-    border-radius: 0.4rem;
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-
-    button {
-        width: 100%;
+@media screen and (min-width: 62rem) {
+    .login {
+        position: fixed;
+        right: 8rem;
+        top: 1.5rem;
+        padding: 0.5rem;
+        z-index: 100;
         background-color: $yellow;
-        border: none;
-        cursor: pointer;
-    }
-
-    .login-name {
+        border-radius: 0.4rem;
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
+        cursor: pointer;
 
-        img {
-            width: 24px;
-            height: 24px;
-            margin-right: 0.5rem;
-            border-radius: 5px;
+        button {
+            width: 100%;
+            background-color: $yellow;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+
+            span {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .login-name {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 5px;
+                margin-right: 0.5rem;
+            }
+
+        }
+
+        .login-menu {
+            margin-top: 0.5rem;
+            width: 100%;
         }
     }
+}
 
-    .hidden {
-        display: none;
-    }
+@media screen and (max-width: 62rem) {
+    .login {
+        display: flex;
+        font-size: 1rem;
+        margin-top: 1.5rem;
 
-    .login-menu {
-        margin-top: 0.5rem;
-        width: 100%;
+        button {
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            background: white;
+            display: flex;
+            align-items: center;
+
+            span {
+                margin-right: 0.5rem;
+                font-size: 24px;
+            }
+        }
+
+        .login-name {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 5px;
+                margin-right: 0.5rem;
+            }
+
+        }
+
+        .login-menu {
+            margin-top: 0.5rem;
+            width: 100%;
+        }
     }
 }

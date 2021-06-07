@@ -16,7 +16,7 @@ const Login = () => {
 
     async function checkUser() {
         const accessToken = await getAccessTokenSilently();
-        fetch('http://localhost:3001/check-new-user', {
+        fetch(`${process.env.REACT_APP_UNIFY_BACK}/check-new-user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

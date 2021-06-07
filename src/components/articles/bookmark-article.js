@@ -1,5 +1,6 @@
 import Bookmark from '../bookmark';
 import Date from './date';
+import Image from './image';
 import SourceInfo from './source-info';
 
 export default function RelatedArticle(props) {
@@ -9,7 +10,7 @@ export default function RelatedArticle(props) {
             <div className="article">
                 <div className="article-image-wrapper">
                     <a href={props.article.url} target="_blank" rel='noreferrer'>
-                        <img src={props.article.image} alt=""></img>
+                        <Image url={props.article.image} />
                     </a>
                     <Bookmark articleId={props.article.id} remove={true} onClick={() => window.location.reload(true)}></Bookmark>
                     <SourceInfo

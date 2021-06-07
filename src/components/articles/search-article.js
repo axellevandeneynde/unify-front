@@ -1,14 +1,15 @@
 import SourceInfo from './source-info';
 import Bookmark from '../bookmark';
 import Date from './date';
+import Image from './image';
 
 export default function SearchArticle(props) {
     return (
         <div className="row" >
-            <div className="article col-md-offset-5 col-md-5">
+            <div className="article col-md-offset-4 col-md-6">
                 <div className="article-image-wrapper">
                     <a href={props.article.url.raw} target="_blank" rel='noreferrer'>
-                        <img src={props.article.image.raw} alt=""></img>
+                        <Image url={props.article.image.raw}></Image>
                     </a>
                     <Bookmark articleId={props.article.id.raw}></Bookmark>
                     <SourceInfo

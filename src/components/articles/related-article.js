@@ -1,6 +1,7 @@
 import SourceInfo from './source-info';
 import Bookmark from '../bookmark';
 import Date from './date';
+import Image from './image';
 
 export default function RelatedArticle(props) {
 
@@ -9,9 +10,9 @@ export default function RelatedArticle(props) {
             <div className="article">
                 <div className="article-image-wrapper">
                     <a href={props.article.url.raw} target="_blank" rel='noreferrer'>
-                        <img src={props.article.image.raw} alt=""></img>
+                        <Image url={props.article.image.raw} />
                     </a>
-                    <Bookmark articleId={props.article.id.raw}></Bookmark>
+                    <Bookmark articleId={props.article.id.raw} />
                     <SourceInfo
                         name={props.article.source_name.raw}
                         logo={props.article.source_logo.raw}

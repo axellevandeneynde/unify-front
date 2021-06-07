@@ -2,6 +2,8 @@ import Article from '../articles/article';
 import Loading from '../loading';
 import Title from '../title';
 import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { pageNumberAtom } from './store';
 
 export default function Feed() {
     const feedTitle = "Algemeen nieuws";
@@ -9,9 +11,13 @@ export default function Feed() {
 
     const [feedLoading, setFeedLoading] = useState(true);
     const [articles, setArticles] = useState([]);
+    const [previousPageNumber, setPreviousPageNumber] = useState(0);
+    const [pageNumber, setPageNumber] = useRecoilState(pageNumberAtom);
+
 
     useEffect(() => {
-        if (feedLoading === true) {
+        if (feedLoading === true && previousPageNumber < pageNumber) {
+            setFeedLoading(false);
             fetch(`${process.env.REACT_APP_ELASTIC_URL}/api/as/v1/engines/unify/search`, {
                 method: 'POST',
                 headers: {
@@ -30,15 +36,17 @@ export default function Feed() {
                             { source_regions: ['belgium', 'flanders', 'wallonia'] },
                             { source_categories: 'general' }
                         ],
+                    },
+                    page: {
+                        current: pageNumber
                     }
                 })
             }).then(res => res.json())
                 .then(data => {
-                    console.log(data);
-                    setArticles(data.results.map(article =>
+                    setArticles(articles.concat(data.results.map(article =>
                         < Article key={article?.id?.raw} article={article}></Article>
-                    ))
-                    setFeedLoading(false);
+                    )))
+                    console.log(articles);
                 })
         }
     })
@@ -50,6 +58,15 @@ export default function Feed() {
                 <Loading></Loading>
             }
             {articles}
+            <div className="row">
+                <div className="col-xs-12 col-md-9 col-md-offset-3">
+                    <button className="more-articles-button button blue" onClick={() => {
+                        setPreviousPageNumber(pageNumber);
+                        setPageNumber(pageNumber + 1)
+                        setFeedLoading(true);
+                    }}>10 volgende Artikels</button>
+                </div>
+            </div>
         </div>
     )
 }

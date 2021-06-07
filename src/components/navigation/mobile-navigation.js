@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from 'recoil';
 import { navBackBtnAtom } from './store';
+import Login from '../login/login';
 
-export default function MobileNavigation() {
+
+export default function MobileNavigation(props) {
     const [isOpen, setiIsOpen] = useState(false);
     const navBackBtn = useRecoilValue(navBackBtnAtom);
 
@@ -73,6 +75,22 @@ export default function MobileNavigation() {
                                     article
                     </span>  Algemeen nieuws
                 </NavLink>
+                            {
+                                props.userFeeds?.map((feed, index) =>
+                                    <NavLink className='nav-link'
+                                        onClick={closeMenu}
+                                        to={`/user-feed/${feed.id}`}
+                                        key={`feedLink${index}`}
+                                        activeStyle={{
+                                            fontWeight: 700,
+                                        }}
+                                    >
+                                        <span className="material-icons material-icons-m">
+                                            article
+                    </span>  {feed.name.feedName}
+                                    </NavLink>
+                                )
+                            }
                             <NavLink onClick={closeMenu}
                                 className='nav-link'
                                 to="/create-feed"
@@ -85,6 +103,10 @@ export default function MobileNavigation() {
                     </span>
                     nieuwe feed
                 </NavLink>
+                        </div>
+                        <div className="nav-section-wrapper">
+                            <h6 className="nav-section-title">Account</h6>
+                            <Login></Login>
                         </div>
                     </div>
                 </nav>

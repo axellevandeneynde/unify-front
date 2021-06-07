@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Search from '../components/search/search';
 import RelatedArticle from '../components/articles/related-article';
 import Title from '../components/title';
+import Login from '../components/login/login';
 const _ = require('lodash');
 
 export default function RelatedPage(props) {
@@ -53,6 +54,7 @@ export default function RelatedPage(props) {
 
     return (<div className="related-page">
         < Search></Search >
+        <Login></Login>
         < div className="body-padding">
             <Title title="gerelateerde artikels" icon="arrow_back"></Title>
             <div className="row">

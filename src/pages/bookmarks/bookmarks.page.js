@@ -17,7 +17,7 @@ export default function BookmarksPage() {
     async function getArticles() {
         const accessToken = await getAccessTokenSilently();
         if (articles.length === 0 && loading === true) {
-            fetch('http://localhost:3001/get-bookmarks',
+            fetch(`${process.env.REACT_APP_UNIFY_BACK}/get-bookmarks`,
                 {
                     method: 'POST',
                     headers: {

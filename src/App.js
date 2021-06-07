@@ -14,7 +14,7 @@ import Navigation from "./components/navigation/navigation";
 import Search from "./components/search/search";
 import RelatedPage from './pages/related.page';
 import CreateFeedPage from './pages/create-feed/create-feed.page';
-import UserFeedPage from './pages/user-feed.page';
+import UserFeedPage from './pages/user-feed/user-feed.page';
 import { Auth0Provider } from "@auth0/auth0-react";
 import BookmarksPage from "./pages/bookmarks/bookmarks.page";
 
@@ -41,7 +41,7 @@ function App() {
             </Route>
             <Route path="/related/:searchQuery" component={RelatedPage} />
             <ProtectedRoute path="/create-feed" component={CreateFeedPage} />
-            <Route path="/user-feed/:userFeedName" component={UserFeedPage} />
+            <Route path="/user-feed/:userFeedId" component={UserFeedPage} />
             <ProtectedRoute path="/bookmarks" component={BookmarksPage} />
             <Route path="/">
               <Redirect to='/home' />

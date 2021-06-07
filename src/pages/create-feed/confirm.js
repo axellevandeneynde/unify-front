@@ -1,20 +1,38 @@
 import '../assets/background-logo.svg';
-import { progressAtom, selectedLocationsAtom, selectedSourcesAtom, selectedCategoriesAtom } from './store';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { progressAtom, selectedLocationsAtom, selectedSourcesAtom, selectedCategoriesAtom, updateFeedIdAtom } from './store';
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import { Link, Redirect } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useAuth0 } from "@auth0/auth0-react";
+import { userFeedsAtom } from '../../components/navigation/store';
+const _ = require('lodash');
 
 
-export default function Confirm() {
+export default function Confirm(props) {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const setProgress = useSetRecoilState(progressAtom);
-    const selectedLocations = useRecoilValue(selectedLocationsAtom);
-    const selectedCategories = useRecoilValue(selectedCategoriesAtom);
-    const selectedSources = useRecoilValue(selectedSourcesAtom);
+    const [selectedLocations, setSelectedLocations] = useRecoilState(selectedLocationsAtom);
+    const [selectedCategories, setSelectedCategories] = useRecoilState(selectedCategoriesAtom);
+    const [selectedSources, setSelectedSources] = useRecoilState(selectedSourcesAtom);
     const [feedCreated, setFeedCreated] = useState(false);
-    useEffect(() => setProgress(4));
+    const feeds = useRecoilValue(userFeedsAtom);
+    const [updateFeedId, setUpdateFeedId] = useRecoilState(updateFeedIdAtom);
+    const [feedName, setFeedName] = useState('mijn persoonlijke feed')
+
+    useEffect(() => {
+        setProgress(4)
+        if (!_.isNil(props.match.params.id) && updateFeedId !== props.match.params.id) {
+            const feedToUpdate = feeds?.find(feed => feed.id === props.match.params.id);
+            if (!_.isNil(feedToUpdate)) {
+                setSelectedLocations(feedToUpdate.regions || []);
+                setSelectedCategories(feedToUpdate.categories || []);
+                setSelectedSources(feedToUpdate.sources || []);
+                setFeedName(feedToUpdate.name.feedName);
+                setUpdateFeedId(props.match.params.id);
+            }
+        }
+    });
 
 
     return (<div className="confirm col-xs-12 col-md-offset-4 col-md-6" >
@@ -23,12 +41,12 @@ export default function Confirm() {
 
         <Formik
             initialValues={{
-                feedName: 'mijn persoonlijke feed'
+                feedName: feedName
             }}
             onSubmit={async (feedName) => {
                 console.log(user);
                 const accessToken = await getAccessTokenSilently();
-                fetch('http://localhost:3001/create-new-feed', {
+                fetch(`${process.env.REACT_APP_UNIFY_BACK}/create-new-feed`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -40,7 +58,8 @@ export default function Confirm() {
                             name: feedName,
                             categories: selectedCategories,
                             regions: selectedLocations,
-                            sources: selectedSources
+                            sources: selectedSources,
+                            id: updateFeedId
                         }
                     })
                 }).then((res) => res.json()
@@ -54,7 +73,8 @@ export default function Confirm() {
                     <div className="input-wrapper">
                         <Field className="input"
                             id="feedName"
-                            name="feedName">
+                            name="feedName"
+                        >
                         </Field>
                     </div>
                     <div className="confirm-item">
@@ -65,7 +85,7 @@ export default function Confirm() {
                             </ul>
                         </div>
                         <Link to="/create-feed/locations">
-                            <button className="button white"><span class="material-icons">
+                            <button className="button white"><span className="material-icons">
                                 edit
                             </span></button>
                         </Link>
@@ -78,7 +98,7 @@ export default function Confirm() {
                             </ul>
                         </div>
                         <Link to="/create-feed/about">
-                            <button className="button white"><span class="material-icons">
+                            <button className="button white"><span className="material-icons">
                                 edit
                             </span></button>
                         </Link>
@@ -91,7 +111,7 @@ export default function Confirm() {
                             </ul>
                         </div>
                         <Link to="/create-feed/sources">
-                            <button className="button white"><span class="material-icons">
+                            <button className="button white"><span className="material-icons">
                                 edit
                             </span></button>
                         </Link>

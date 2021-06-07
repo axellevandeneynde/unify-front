@@ -38,13 +38,20 @@
             justify-content: left;
             align-items: flex-end;
 
-            img {
+            img,
+            .imagePlaceholder {
                 height: 48px;
                 width: 48px;
                 border-radius: 10px;
                 object-fit: contain;
                 margin-right: 0.5rem;
+
+                .material-icons {
+                    margin: 0;
+                    text-align: center;
+                }
             }
+
         }
 
         p {
@@ -55,6 +62,51 @@
                 color: $black;
             }
         }
+
+        .text-small {
+            margin-top: 0.5rem;
+        }
+
+        h4 {
+            display: flex;
+            align-items: center;
+
+            span {
+                color: $black;
+                margin-left: 0.5rem;
+            }
+        }
+
+        .badge-description {
+            margin-top: 1.5rem;
+
+            .score-badge {
+                .material-icons {
+                    margin-right: 0.5rem;
+                    width: auto;
+                }
+            }
+
+            .biased-badge {
+                width: 3rem;
+                margin: 0;
+
+                .material-icons,
+                span {
+                    text-align: center;
+                }
+            }
+
+            &-score {
+                display: flex;
+                margin-top: 1rem;
+
+                ul {
+                    width: 80%;
+                }
+
+            }
+        }
     }
 }
 
@@ -62,23 +114,69 @@
     position: absolute;
     bottom: 0.5rem;
     left: 0.5rem;
-
+    width: calc(100% - 1.5rem);
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
 
     cursor: pointer;
 
-    img {
+    img,
+    .imagePlaceholder {
         max-width: 48px;
         max-height: 48px;
+        min-width: 48px;
+        min-height: 48px;
         border-radius: 10px;
+
+        .material-icons {
+            margin-left: 0;
+            color: $grey;
+        }
+    }
+
+    .imagePlaceholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     span {
         margin-left: $spacer-xs
     }
+
+    div {
+        display: flex;
+        align-items: flex-end;
+
+        img,
+        .imagePlaceholder {
+            margin-bottom: 0.2rem;
+        }
+    }
 }
 
-.article-source-wrapper:hover {
-    transform: scale(1.03);
+.biased-badge,
+.score-badge {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    height: 2rem;
+    margin-bottom: 0.25rem;
+
+    .material-icons {
+        margin: 0;
+        font-size: 1.3rem;
+    }
+}
+
+.biased-badge {
+    width: 2rem;
+}
+
+.score-badge {
+    width: 3rem;
+
 }

@@ -28,7 +28,7 @@ export default function SourcesQuestion() {
         setProgress(3)
         console.log(sources);
         if (sources.length === 0 && !fetchedSources) {
-            fetch('http://localhost:3001/news-sources').then(res => res.json())
+            fetch(`${process.env.REACT_APP_UNIFY_BACK}/news-sources`).then(res => res.json())
                 .then(data => {
                     const relevant = data.filter(source => {
                         let hasCategory = false;

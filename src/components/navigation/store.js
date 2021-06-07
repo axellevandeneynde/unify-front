@@ -7,5 +7,5 @@ export const navBackBtnAtom = atom({
 
 export const userFeedsAtom = atom({
     key: 'userFeeds',
-    default: [],
+    default: null,
 });
