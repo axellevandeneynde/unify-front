@@ -33,14 +33,13 @@ export default function SourceInfo(props) {
                         </span>
                         <div className="source-info-title">
                             <Image url={props.logo} />
-                            <h3>{props.name}</h3>
+                            <h3 className="title">{props.name}</h3>
                         </div>
                         <p>
                             {props.description}
                         </p>
-                        <p><strong>website:</strong> <a href={props.website}>{props.website}</a></p>
                         <div className="badge-description">
-                            <h4>Betrouwbaarheids analyse
+                            <h4 className="side-title">Betrouwbaarheids analyse
                                 <Link to="/about/#trust">
                                     <span className="material-icons">
                                         info
@@ -71,6 +70,7 @@ export default function SourceInfo(props) {
                                 </ul>
                             </div>
                         </div>
+                        <p><strong>website:</strong> <a href={props.website}>{props.website}</a></p>
                     </div>
                 </div>
             }

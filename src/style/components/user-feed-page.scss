@@ -1,12 +1,22 @@
 .user-feed-page {
+    z-index: -51;
     margin-top: 7rem;
 
-    .title.row {
+    @media screen and (max-width: 62rem) {
+        margin-top: 0;
 
-        @media screen and (max-width: 62rem) {
-            span {
-                display: none;
-            }
+        .login {
+            display: none;
+        }
+
+        .title-under-search {
+            margin-top: 5rem;
+        }
+    }
+
+    @media screen and (max-width: 62rem) {
+        .login {
+            display: none;
         }
     }
 }

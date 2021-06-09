@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 
 export default function SourcesQuestion() {
-    const setProgress = useSetRecoilState(progressAtom);
+    const [progress, setProgress] = useRecoilState(progressAtom);
     const [sources, setSources] = useRecoilState(relevantSourcesAtom);
     const [selectedSources, setSelectedSources] = useRecoilState(selectedSourcesAtom);
     const selectedCatgories = useRecoilValue(selectedCategoriesAtom);
@@ -25,6 +25,9 @@ export default function SourcesQuestion() {
     }, 400)
 
     useEffect(() => {
+        if (progress === 2) {
+            window.scrollTo(0, 0);
+        }
         setProgress(3)
         console.log(sources);
         if (sources.length === 0 && !fetchedSources) {
@@ -70,7 +73,7 @@ export default function SourcesQuestion() {
     })
 
     return (<div className="LocationQuestion col-xs-12 col-md-offset-4 col-md-6" >
-        <h1 className="page-title">WELKE PUBLICATIES WIL JE VOLGEN?</h1>
+        <h1 className="page-title">WELKE BRONNEN WIL JE VOLGEN?</h1>
 
         <div className="tab-wrapper">
             {
@@ -119,7 +122,11 @@ export default function SourcesQuestion() {
                     className='button white'
                     key={source._id}
                     onClick={() => {
-                        setSelectedSources((sources) => sources.concat([source]))
+                        if (selectedSources.includes(source)) {
+                            setSelectedSources((sources) => sources.filter(item => item !== source))
+                        } else {
+                            setSelectedSources((sources) => sources.concat([source]))
+                        }
                     }}>
                     <div>
                         <img src={source.logo}></img>

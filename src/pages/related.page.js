@@ -3,6 +3,7 @@ import Search from '../components/search/search';
 import RelatedArticle from '../components/articles/related-article';
 import Title from '../components/title';
 import Login from '../components/login/login';
+import Loading from '../components/loading';
 const _ = require('lodash');
 
 export default function RelatedPage(props) {
@@ -10,6 +11,7 @@ export default function RelatedPage(props) {
 
     const [fetchRelated, setFetchRelated] = useState(true);
     const [related, setRelated] = useState([]);
+    const [numberOfResults, setNumberOfResults] = useState(0);
 
     useEffect(() => {
         if (fetchRelated) {
@@ -43,6 +45,7 @@ export default function RelatedPage(props) {
                             }
                             return <RelatedArticle article={article} key={`related${i}`} />
                         }));
+                        setNumberOfResults(relevant.length);
                     }
                     setFetchRelated(false);
                 }
@@ -57,6 +60,14 @@ export default function RelatedPage(props) {
         <Login></Login>
         < div className="body-padding">
             <Title title="gerelateerde artikels" icon="arrow_back"></Title>
+            {fetchRelated &&
+                <Loading></Loading>
+            }
+            {!fetchRelated &&
+                <div className="row">
+                    <p className="text-small grey col-md-offset-3 col-md-9">{numberOfResults} gerelateered artikels gevonden</p>
+                </div>
+            }
             <div className="row">
                 {related}
             </div>

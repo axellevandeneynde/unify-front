@@ -53,7 +53,7 @@ export default function PreviewRelatedArticles(props) {
 
     return (
         <div className="desktop-related">
-            <p className="grey">{numberOfResults} gerelateered artikels gevonden</p>
+            <p className="text-small grey">{numberOfResults} gerelateered artikels gevonden</p>
             {relatedArticles}
             { relatedArticles.length >= 1 &&
                 <Link to={`/related/${searchQueries.raw.join('--').slice(0, 127).replace(/%/g, '')}`}>

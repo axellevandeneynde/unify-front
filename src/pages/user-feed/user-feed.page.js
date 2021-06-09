@@ -1,4 +1,4 @@
-import { useState, useEffect, componentWillUnmount } from 'react';
+import { useState, useEffect } from 'react';
 import Search from '../../components/search/search';
 import Title from '../../components/title';
 import Article from '../../components/articles/article';
@@ -90,13 +90,13 @@ export default function UserFeedPage(props) {
             {
                 (!loading && articles.length === 0) &&
                 <div className="row">
-                    <p className="col-xs-12 col-md-9 col-md-offset-3">
+                    <p className="text-small col-xs-12 col-md-9 col-md-offset-3">
                         Er werden geen artikels gevonden, probeer het later opnieuw
                     </p>
                 </div>
             }
             <div className="row">
-                <div className="col-xs-12 col-md-9 col-md-offset-3">
+                <div className="col-xs-12 col-md-9 col-md-offset-3" style={{ padding: 0 }}>
                     <button className="more-articles-button button green" onClick={() => {
                         setPageNumberUserFeed(pageNumberUserFeed + 1);
                         setLoading(true);

@@ -8,7 +8,7 @@ const _ = require('lodash');
 
 export default function LocationQuestion() {
     const allLocations = useRecoilValue(locationsAtom);
-    const setProgress = useSetRecoilState(progressAtom);
+    const [progress, setProgress] = useRecoilState(progressAtom);
     const [selectedLocations, setSelectedLocations] = useRecoilState(selectedLocationsAtom);
 
     const [filteredLocations, setFilteredLocations] = useState([]);
@@ -22,6 +22,9 @@ export default function LocationQuestion() {
     }, 400)
 
     useEffect(() => {
+        if (progress === 0) {
+            window.scrollTo(0, 0);
+        }
         setProgress(1)
         if (filteredLocations.length === 0 && searched === true) {
             setNoResults(true);
@@ -78,7 +81,11 @@ export default function LocationQuestion() {
                     className='button white'
                     key={location._id}
                     onClick={() => {
-                        setSelectedLocations((locations) => locations.concat([location]))
+                        if (selectedLocations.includes(location)) {
+                            setSelectedLocations((locations) => locations.filter(item => item !== location))
+                        } else {
+                            setSelectedLocations((locations) => locations.concat([location]))
+                        }
                     }}>
                     {location.locationName}
                 </button>

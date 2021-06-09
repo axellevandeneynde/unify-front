@@ -59,7 +59,7 @@ export default function Feed() {
             }
             {articles}
             <div className="row">
-                <div className="col-xs-12 col-md-9 col-md-offset-3">
+                <div className="col-xs-12 col-md-9 col-md-offset-3" style={{ padding: 0 }}>
                     <button className="more-articles-button button blue" onClick={() => {
                         setPreviousPageNumber(pageNumber);
                         setPageNumber(pageNumber + 1)

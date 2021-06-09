@@ -50,7 +50,7 @@ export default function MobileNavigation(props) {
                             >
                                 <span className="material-icons material-icons-m">
                                     search
-                    </span> zoeken
+                    </span> Zoeken
                 </NavLink>
                             <NavLink onClick={closeMenu} className='nav-link'
                                 to="/bookmarks"
@@ -101,7 +101,7 @@ export default function MobileNavigation(props) {
                                 <span className="material-icons material-icons-m">
                                     add
                     </span>
-                    nieuwe feed
+                    Nieuwe feed
                 </NavLink>
                         </div>
                         <div className="nav-section-wrapper">

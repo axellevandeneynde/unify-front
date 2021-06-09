@@ -41,7 +41,7 @@ export default function CreateFeedPage() {
     })
 
     return (
-        <div className='create-feed-wrapper body-padding row'>
+        <div className='create-feed-wrapper row'>
             <Switch>
                 <ProtectedRoute path={`/create-feed/get-started`} component={GetStarted} />
                 <ProtectedRoute path={`${match.path}/locations`} component={LocationQuestion} />

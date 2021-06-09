@@ -2,11 +2,13 @@
 .bookmarks-page {
     margin-top: 7rem;
 
+    @media screen and (max-width: 62rem) {
+        margin-top: 0;
+    }
+
     .title.row {
         @media screen and (max-width: 62rem) {
-            span {
-                display: none;
-            }
+            margin-top: 5rem;
         }
     }
 
@@ -27,4 +29,19 @@
             padding: 0;
         }
     }
+}
+
+.related-page {
+    .page-title {
+        @media screen and (max-width: 38rem) {
+            display: inline-block;
+            margin-left: 16.667%;
+        }
+    }
+
+    .row:nth-child(2) p {
+        position: relative;
+        bottom: -1rem;
+    }
+
 }

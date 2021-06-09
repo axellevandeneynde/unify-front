@@ -5,13 +5,16 @@ import { Link } from 'react-router-dom';
 const _ = require('lodash');
 
 export default function AboutQuestion() {
-    const setProgress = useSetRecoilState(progressAtom);
+    const [progress, setProgress] = useRecoilState(progressAtom);
     const categories = useRecoilValue(categoriesAtom);
     const [selectedCategories, setSelectedCategories] = useRecoilState(selectedCategoriesAtom);
 
 
 
     useEffect(() => {
+        if (progress === 1) {
+            window.scrollTo(0, 0);
+        }
         setProgress(2)
     })
 

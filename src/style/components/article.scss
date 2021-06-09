@@ -90,3 +90,9 @@
         margin-bottom: 0.5rem;
     }
 }
+
+.preview-related-articles-wrapper {
+    @media screen and (max-width: 62rem) {
+        padding: 0;
+    }
+}

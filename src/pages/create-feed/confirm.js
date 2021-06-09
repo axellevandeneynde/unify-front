@@ -11,7 +11,7 @@ const _ = require('lodash');
 
 export default function Confirm(props) {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-    const setProgress = useSetRecoilState(progressAtom);
+    const [progress, setProgress] = useRecoilState(progressAtom);
     const [selectedLocations, setSelectedLocations] = useRecoilState(selectedLocationsAtom);
     const [selectedCategories, setSelectedCategories] = useRecoilState(selectedCategoriesAtom);
     const [selectedSources, setSelectedSources] = useRecoilState(selectedSourcesAtom);
@@ -21,6 +21,9 @@ export default function Confirm(props) {
     const [feedName, setFeedName] = useState('mijn persoonlijke feed')
 
     useEffect(() => {
+        if (progress === 3) {
+            window.scrollTo(0, 0);
+        }
         setProgress(4)
         if (!_.isNil(props.match.params.id) && updateFeedId !== props.match.params.id) {
             const feedToUpdate = feeds?.find(feed => feed.id === props.match.params.id);

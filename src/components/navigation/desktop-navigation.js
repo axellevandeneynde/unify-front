@@ -17,7 +17,7 @@ export default function DesktopNavigation(props) {
                         >
                             <span className="material-icons material-icons-m">
                                 search
-                    </span> zoeken
+                    </span> Zoeken
                 </NavLink>
                         <NavLink className={`nav-link ${!props.isAuthenticated ? 'grey' : ''}`}
                             to="/bookmarks"
@@ -67,7 +67,7 @@ export default function DesktopNavigation(props) {
                         >
                             <span className="material-icons material-icons-m">
                                 add
-                            </span> nieuwe feed
+                            </span> Nieuwe feed
                         </NavLink>
                     </div>
                 </div>

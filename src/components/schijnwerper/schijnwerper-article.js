@@ -46,7 +46,7 @@ export default function SchijnwerperArticle(props) {
 
     return (
         <div className={`schijnwerper-article ${props.side} row`}>
-            <div className={`${props.side !== 'reverse' ? 'col-md-offset-3' : ''} col-md-4`}>
+            <div className={`${props.side !== 'reverse' ? 'col-md-offset-3' : ''} col-md-4`} style={{ 'width': '100%' }}>
                 <div className="schijnwerper-article-image-wrapper">
                     <a href={props.article.url} target="_blank" rel='noreferrer'>
                         <Image url={props.article.image} />
