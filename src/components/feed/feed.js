@@ -46,7 +46,6 @@ export default function Feed() {
                     setArticles(articles.concat(data.results.map(article =>
                         < Article key={article?.id?.raw} article={article}></Article>
                     )))
-                    console.log(articles);
                 })
         }
     })

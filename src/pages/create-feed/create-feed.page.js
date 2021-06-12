@@ -18,7 +18,6 @@ import { navBackBtnAtom } from '../../components/navigation/store';
 
 export default function CreateFeedPage() {
     let match = useRouteMatch();
-    console.log(match);
     const [allLocations, setAllLoactions] = useRecoilState(locationsAtom);
     const [allCategories, setAllCategories] = useRecoilState(categoriesAtom);
     const progress = useRecoilValue(progressAtom);

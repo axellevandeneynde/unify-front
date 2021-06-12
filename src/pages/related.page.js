@@ -53,7 +53,6 @@ export default function RelatedPage(props) {
         }
 
     })
-    console.log(related);
 
     return (<div className="related-page">
         < Search></Search >

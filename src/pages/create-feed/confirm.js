@@ -47,7 +47,6 @@ export default function Confirm(props) {
                 feedName: feedName
             }}
             onSubmit={async (feedName) => {
-                console.log(user);
                 const accessToken = await getAccessTokenSilently();
                 fetch(`${process.env.REACT_APP_UNIFY_BACK}/create-new-feed`, {
                     method: 'POST',
@@ -68,7 +67,6 @@ export default function Confirm(props) {
                 }).then((res) => res.json()
                 ).then(data => {
                     setFeedCreated(true);
-                    console.log(data)
                 });
             }}>
             {() => (

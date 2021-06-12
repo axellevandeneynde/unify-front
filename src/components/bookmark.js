@@ -21,7 +21,6 @@ export default function Bookmark(props) {
                 })
             }).then((res) => res.json()
             ).then(data => {
-                console.log(data)
                 setIsBookmarked(true);
             });
         } else {
@@ -37,7 +36,6 @@ export default function Bookmark(props) {
                 })
             }).then((res) => res.json()
             ).then(data => {
-                console.log(data)
                 setIsBookmarked(false);
             });
         }
