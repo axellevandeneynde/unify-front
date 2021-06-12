@@ -9798,7 +9798,7 @@
     "iconv-lite" "0.4.24"
     "unpipe" "1.0.0"
 
-"rc-pagination@^1.20.1":
+"rc-pagination@^1.20.1", "rc-pagination@^1.21.1":
   "integrity" "sha512-Z+iYLbrJOBKHdgoAjLhL9jOgb7nrbPzNmV31p0ikph010/Ov1+UkrauYzWhumUyR+GbRFi3mummdKW/WtlOewA=="
   "resolved" "https://registry.npmjs.org/rc-pagination/-/rc-pagination-1.21.1.tgz"
   "version" "1.21.1"

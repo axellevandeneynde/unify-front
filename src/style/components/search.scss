@@ -63,4 +63,21 @@
 .search-result-wrapper {
     min-height: 80vh;
     margin-top: 6.5rem;
+
+    .row:last-child {
+        padding: 1rem;
+
+        .rc-pagination {
+            display: flex;
+            justify-content: center;
+
+            .sui-paging .rc-pagination-item a,
+            .rc-pagination-item a,
+            .sui-paging .rc-pagination-jump-next:hover:after,
+            .rc-pagination-jump-prev:hover:after,
+            .rc-pagination-jump-next:hover:after {
+                color: $black;
+            }
+        }
+    }
 }

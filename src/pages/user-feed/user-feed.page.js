@@ -27,7 +27,6 @@ export default function UserFeedPage(props) {
         setThisFeed(feeds?.find(feed => feed.id === feedId));
 
         if (previousHistory !== history.location.pathname) {
-            console.log('hey');
             setLoading(true);
             setFeedId(props.match.params.userFeedId);
             setArticles([]);
@@ -35,13 +34,11 @@ export default function UserFeedPage(props) {
             setPageNumberUserFeed(1);
             setThisFeed(null);
         }
-        console.log(thisFeed);
 
         if (loading === true
             && previousPageNumber < pageNumberUserFeed
             && !_.isNil(thisFeed)
         ) {
-            console.log('fetching');
             fetch(`${process.env.REACT_APP_ELASTIC_URL}/api/as/v1/engines/unify/search`, {
                 method: 'POST',
                 headers: {

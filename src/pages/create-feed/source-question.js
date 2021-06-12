@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState, useRecoilState } from 'recoil';
 import { relevantSourcesAtom, progressAtom, selectedSourcesAtom, selectedCategoriesAtom, selectedLocationsAtom } from './store';
 import { Link } from 'react-router-dom';
+import { removeDuplicateSources } from './helpers';
+import Loading from '../../components/loading';
 const _ = require('lodash');
 
 
@@ -13,7 +15,7 @@ export default function SourcesQuestion() {
     const selectedCatgories = useRecoilValue(selectedCategoriesAtom);
     const selectedLocations = useRecoilValue(selectedLocationsAtom);
 
-    const [filteredSources, setFilteredSources] = useState([]);
+    const [filteredSources, setFilteredSources] = useState(sources);
     const [noResults, setNoResults] = useState(false);
     const [searched, setSearched] = useState(false);
     const [fetchedSources, setFetchedSources] = useState(false);
@@ -29,7 +31,6 @@ export default function SourcesQuestion() {
             window.scrollTo(0, 0);
         }
         setProgress(3)
-        console.log(sources);
         if (sources.length === 0 && !fetchedSources) {
             fetch(`${process.env.REACT_APP_UNIFY_BACK}/news-sources`).then(res => res.json())
                 .then(data => {
@@ -48,6 +49,7 @@ export default function SourcesQuestion() {
                                 break;
                             }
                         }
+
                         if (hasCategory && hasLocation) {
                             return true;
                         }
@@ -57,11 +59,14 @@ export default function SourcesQuestion() {
                         if (hasLocation && selectedCatgories.length === 0) {
                             return true
                         }
-                        // CHANGE THIS TO FALSE WHEN YOU HAVE MORE SOURCES!!!!!!
-                        return true;
+                        if (selectedLocations.length === 0 && selectedCatgories.length === 0) {
+                            return true
+                        }
+                        // set to true to have all sources available
+                        return false;
                     })
-                    setSources(relevant);
-                    setFilteredSources(relevant);
+                    setSources(removeDuplicateSources(relevant));
+                    setFilteredSources([removeDuplicateSources(relevant)]);
                     setFetchedSources(true);
                 })
         }
@@ -72,76 +77,81 @@ export default function SourcesQuestion() {
         }
     })
 
-    return (<div className="LocationQuestion col-xs-12 col-md-offset-4 col-md-6" >
-        <h1 className="page-title">WELKE BRONNEN WIL JE VOLGEN?</h1>
+    return (
+        <>
+            <div className="LocationQuestion col-xs-12 col-md-offset-4 col-md-6" >
+                <h1 className="page-title">WELKE BRONNEN WIL JE VOLGEN?</h1>
 
-        <div className="tab-wrapper">
-            {
-                selectedSources.map(source =>
-                    <span
-                        onClick={() => {
-                            setSelectedSources((sources) => sources.filter(item => item !== source))
-                        }}
-                        className="tab green">
-                        {source.name}
-                    </span>)
-            }
-        </div>
+                <div className="tab-wrapper">
+                    {
+                        selectedSources.map(source =>
+                            <span
+                                onClick={() => {
+                                    setSelectedSources((sources) => sources.filter(item => item !== source))
+                                }}
+                                className="tab green">
+                                {source.name}
+                            </span>)
+                    }
+                </div>
 
-        <Formik
-            initialValues={{
-                typedSource: ''
-            }}
-            onSubmit={async (values) => {
-                debouncedSubmit(values.typedSource);
-            }}>
-            {({ submitForm }) => (
-                <Form>
-                    <div className="search-input-wrapper">
-                        <span className="material-icons material-icons-m search-input-icon">
-                            search
-                    </span>
-                        <Field className="input"
-                            placeholder="De standaard, knack,..."
-                            id="typedSource"
-                            name="typedSource"
-                            onKeyUp={submitForm}>
-
-                        </Field>
-                    </div>
-                </Form>
-            )}
-        </Formik>
-        <div className='sources-button-list'>
-            {
-                noResults &&
-                <p>sorry, deze bron werd niet gevonden.</p>
-            }
-            {filteredSources.map((source) =>
-                <button
-                    className='button white'
-                    key={source._id}
-                    onClick={() => {
-                        if (selectedSources.includes(source)) {
-                            setSelectedSources((sources) => sources.filter(item => item !== source))
-                        } else {
-                            setSelectedSources((sources) => sources.concat([source]))
-                        }
+                <Formik
+                    initialValues={{
+                        typedSource: ''
+                    }}
+                    onSubmit={async (values) => {
+                        debouncedSubmit(values.typedSource);
                     }}>
-                    <div>
-                        <img src={source.logo}></img>
-                        <h3>{source.name}</h3>
-                    </div>
-                    <p>{source.description}</p>
-                </button>
-            )}
-        </div>
-        <Link to='/create-feed/confirm'>
-            <button
-                className={`side-title button fixed-button ${selectedSources.length === 0 ? 'white' : 'green'}`}>
-                {selectedSources.length === 0 ? 'Overslaan' : 'Verdergaan'}
-            </button>
-        </Link>
-    </div>
+                    {({ submitForm }) => (
+                        <Form>
+                            <div className="search-input-wrapper">
+                                <span className="material-icons material-icons-m search-input-icon">
+                                    search
+                    </span>
+                                <Field className="input"
+                                    placeholder="De standaard, knack,..."
+                                    id="typedSource"
+                                    name="typedSource"
+                                    onKeyUp={submitForm}>
+
+                                </Field>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
+                <div className='sources-button-list'>
+                    {
+                        noResults &&
+                        <p>sorry, deze bron werd niet gevonden.</p>
+                    }
+                    {filteredSources.map((source) =>
+                        <button
+                            className='button white'
+                            key={source._id}
+                            onClick={() => {
+                                if (selectedSources.includes(source)) {
+                                    setSelectedSources((sources) => sources.filter(item => item !== source))
+                                } else {
+                                    setSelectedSources((sources) => sources.concat([source]))
+                                }
+                            }}>
+                            <div>
+                                <img src={source.logo}></img>
+                                <h3>{source.name}</h3>
+                            </div>
+                            <p>{source.description}</p>
+                        </button>
+                    )}
+                </div>
+            </div>
+            <div className="fixed-button-wrapper">
+                <Link to='/create-feed/confirm'>
+                    <button
+                        className={`side-title button fixed-button ${selectedSources.length === 0 ? 'white' : 'green'}`}>
+                        {selectedSources.length === 0 ? 'Overslaan' : 'Verdergaan'}
+                    </button>
+                </Link>
+            </div>
+        </>
     )
 }

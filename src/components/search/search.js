@@ -1,3 +1,4 @@
+import "@elastic/react-search-ui-views/lib/styles/styles.css";
 import { useState } from 'react';
 import {
     Redirect,
@@ -11,6 +12,8 @@ import {
     ErrorBoundary,
     SearchProvider,
     WithSearch,
+    Paging,
+    PagingInfo
 } from "@elastic/react-search-ui";
 
 import {
@@ -86,14 +89,20 @@ export default function Search() {
                                 </div>
                                 {results.length > 0 &&
                                     <div className="search-result-wrapper body-padding">
-                                        <div className="row">
-                                            <p className="col-md-offset-4 col-md-6 text-small">er werden {results.length} artikels gevonden</p>
-                                        </div>
+                                        <PagingInfo view={({ totalResults }) => (
+                                            <div className="row">
+                                                <p className="col-md-offset-4 col-md-6 text-small">
+                                                    {totalResults} resultaten gevonden</p>
+                                            </div>
+                                        )} />
                                         {results.map(r => (
                                             <SearchArticle key={r?.id?.raw}
                                                 article={r}
                                             />
                                         ))}
+                                        <div className="row">
+                                            <Paging className="col-md-offset-4 col-md-6 col-xs-12" />
+                                        </div>
                                     </div>
                                 }
                                 {autocompletedResults.map(r => (

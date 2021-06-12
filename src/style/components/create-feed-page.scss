@@ -3,19 +3,36 @@
     min-height: calc(100vh - 4rem);
 
     .fixed-button {
-        font-weight: 700;
         position: fixed;
         bottom: 4rem;
-        left: 2rem;
-        width: calc(100vw - 4rem);
         z-index: 2;
+        font-weight: 700;
+        width: calc(50% - 2rem);
 
-        @media screen and (min-width: 62rem) {
-            left: 2.7rem;
-            width: calc(((100vw - 9rem) / 2) - 2.6rem);
-            margin-left: calc((100vw - 9rem) / 3);
+        @media screen and (max-width: 62rem) {
+            width: calc(100% - 2rem);
+            margin-left: 0;
         }
     }
+
+    .fixed-button-wrapper {
+        width: 100%;
+        position: fixed;
+        bottom: 4rem;
+        z-index: 2;
+
+        .fixed-button {
+            width: calc(50% - 2rem);
+            margin-left: calc(33.333% + 1rem);
+
+            @media screen and (max-width: 62rem) {
+                // left: 2.7rem;
+                width: calc(100% - 2rem);
+                margin-left: 1rem;
+            }
+        }
+    }
+
 
     input {
         border: none;

@@ -13,10 +13,19 @@ export default function SearchArticle(props) {
                     </a>
                     <Bookmark articleId={props.article.id.raw}></Bookmark>
                     <SourceInfo
-                        name={props.article.source_name.raw}
-                        logo={props.article.source_logo.raw}
-                        website={props.article.source_website.raw}
-                        description={props.article.source_description.raw}
+                        info={{
+                            name: props.article.source_name.raw,
+                            logo: props.article.source_logo.raw,
+                            website: props.article.source_website.raw,
+                            description: props.article.source_description.raw,
+                            biased: props.article?.biased?.raw,
+                            trust: {
+                                description: props.article?.trust_description?.raw,
+                                author: props.article?.trust_written_by?.raw,
+                                date: props.article?.trust_last_update?.raw,
+                                score: props.article?.trust_score?.raw,
+                            }
+                        }}
                     ></SourceInfo>
                 </div>
                 <a href={props.article.url.raw} target="_blank" rel='noreferrer'>

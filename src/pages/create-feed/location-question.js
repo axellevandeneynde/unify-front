@@ -11,12 +11,12 @@ export default function LocationQuestion() {
     const [progress, setProgress] = useRecoilState(progressAtom);
     const [selectedLocations, setSelectedLocations] = useRecoilState(selectedLocationsAtom);
 
-    const [filteredLocations, setFilteredLocations] = useState([]);
+    const [filteredLocations, setFilteredLocations] = useState(allLocations);
     const [noResults, setNoResults] = useState(false);
     const [searched, setSearched] = useState(false);
 
     const debouncedSubmit = _.debounce((typedLocation) => {
-        const result = allLocations.filter((location) => location?.locationName.toLowerCase().includes(typedLocation.toLowerCase()))
+        const result = allLocations.filter((location) => location?.locationName?.toLowerCase().includes(typedLocation.toLowerCase()))
         setFilteredLocations(result);
         setSearched(true);
     }, 400)
@@ -33,70 +33,75 @@ export default function LocationQuestion() {
         }
     })
 
-    return (<div className="LocationQuestion col-xs-12 col-md-offset-4 col-md-6" >
-        <h1 className="page-title">VAN WAAR WIL JE NIEUWS?</h1>
-        <div className="tab-wrapper">
-            {
-                selectedLocations.map(location =>
-                    <span
-                        onClick={() => {
-                            setSelectedLocations((locations) => locations.filter(item => item !== location))
-                        }}
-                        className="tab pink">
-                        {location.locationName}
-                    </span>)
-            }
-        </div>
-        <Formik
-            initialValues={{
-                typedLocation: ''
-            }}
-            onSubmit={async (values) => {
-                debouncedSubmit(values.typedLocation);
-            }}>
-            {({ submitForm }) => (
-                <Form>
-                    <div className="search-input-wrapper">
-                        <span className="material-icons material-icons-m search-input-icon">
-                            search
-                    </span>
-                        <Field className="input"
-                            placeholder="België, Aalst,..."
-                            id="typedLocation"
-                            name="typedLocation"
-                            onKeyUp={submitForm}>
-
-                        </Field>
-                    </div>
-                </Form>
-            )}
-        </Formik>
-        <div className='button-list'>
-            {
-                noResults &&
-                <p>sorry, deze locatie werd niet gevonden.</p>
-            }
-            {filteredLocations.map((location, i) =>
-                <button
-                    className='button white'
-                    key={location._id}
-                    onClick={() => {
-                        if (selectedLocations.includes(location)) {
-                            setSelectedLocations((locations) => locations.filter(item => item !== location))
-                        } else {
-                            setSelectedLocations((locations) => locations.concat([location]))
-                        }
+    return (
+        <>
+            <div className="LocationQuestion col-xs-12 col-md-offset-4 col-md-6" >
+                <h1 className="page-title">VAN WAAR WIL JE NIEUWS?</h1>
+                <div className="tab-wrapper">
+                    {
+                        selectedLocations.map(location =>
+                            <span
+                                onClick={() => {
+                                    setSelectedLocations((locations) => locations.filter(item => item !== location))
+                                }}
+                                className="tab pink">
+                                {location.locationName}
+                            </span>)
+                    }
+                </div>
+                <Formik
+                    initialValues={{
+                        typedLocation: ''
+                    }}
+                    onSubmit={async (values) => {
+                        debouncedSubmit(values.typedLocation);
                     }}>
-                    {location.locationName}
-                </button>
-            )}
-        </div>
-        <Link to='/create-feed/about'>
-            <button
-                className={`side-title button fixed-button ${selectedLocations.length === 0 ? 'white' : 'pink'}`}>
-                {selectedLocations.length === 0 ? 'Overslaan' : 'Verdergaan'}
-            </button>
-        </Link>
-    </div>
+                    {({ submitForm }) => (
+                        <Form>
+                            <div className="search-input-wrapper">
+                                <span className="material-icons material-icons-m search-input-icon">
+                                    search
+                    </span>
+                                <Field className="input"
+                                    placeholder="België, Aalst,..."
+                                    id="typedLocation"
+                                    name="typedLocation"
+                                    onKeyUp={submitForm}>
+
+                                </Field>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
+                <div className='button-list'>
+                    {
+                        noResults &&
+                        <p>sorry, deze locatie werd niet gevonden.</p>
+                    }
+                    {filteredLocations.map((location, i) =>
+                        <button
+                            className='button white'
+                            key={location._id}
+                            onClick={() => {
+                                if (selectedLocations.includes(location)) {
+                                    setSelectedLocations((locations) => locations.filter(item => item !== location))
+                                } else {
+                                    setSelectedLocations((locations) => locations.concat([location]))
+                                }
+                            }}>
+                            {location.locationName}
+                        </button>
+                    )}
+                </div>
+            </div>
+            <div className="fixed-button-wrapper">
+                <Link to='/create-feed/about'>
+                    <button
+                        className={`side-title button fixed-button ${selectedLocations.length === 0 ? 'white' : 'pink'}`}>
+                        {selectedLocations.length === 0 ? 'Overslaan' : 'Verdergaan'}
+                    </button>
+                </Link>
+            </div>
+        </>
     )
 }

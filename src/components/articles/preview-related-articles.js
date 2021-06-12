@@ -4,11 +4,10 @@ import Image from './image';
 const _ = require('lodash');
 
 export default function PreviewRelatedArticles(props) {
-    const searchQueries = props.article.labels;
+    let searchQueries = props.article.labels.raw || [''];
     const [fetchRelated, setFetchRelated] = useState(true);
     const [related, setRelated] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(0);
-
     useEffect(() => {
         if (fetchRelated) {
             fetch(`${process.env.REACT_APP_ELASTIC_URL}/api/as/v1/engines/unify/search`, {
@@ -18,7 +17,7 @@ export default function PreviewRelatedArticles(props) {
                     'Authorization': `Bearer ${process.env.REACT_APP_ELASTIC_SEARCH_KEY}`
                 },
                 body: JSON.stringify({
-                    query: searchQueries.raw.join(' ').slice(0, 127),
+                    query: searchQueries.join(' ').slice(0, 127),
                     search_fields: {
                         title: {},
                         description: {},
@@ -56,7 +55,7 @@ export default function PreviewRelatedArticles(props) {
             <p className="text-small grey">{numberOfResults} gerelateered artikels gevonden</p>
             {relatedArticles}
             { relatedArticles.length >= 1 &&
-                <Link to={`/related/${searchQueries.raw.join('--').slice(0, 127).replace(/%/g, '')}`}>
+                <Link to={`/related/${searchQueries.join('--').slice(0, 127).replace(/%/g, '')}`}>
                     <button className="button button-white">Alle gerelateerde artikels</button>
                 </Link>
             }

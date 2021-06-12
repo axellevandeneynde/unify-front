@@ -53,10 +53,19 @@ export default function SchijnwerperArticle(props) {
                     </a>
                     <Bookmark articleId={props.article.id}></Bookmark>
                     <SourceInfo
-                        name={props.article.source_name}
-                        logo={props.article.source_logo}
-                        website={props.article.source_website}
-                        description={props.article.source_description}
+                        info={{
+                            name: props.article.source_name,
+                            logo: props.article.source_logo,
+                            website: props.article.source_website,
+                            description: props.article.source_description,
+                            biased: props.article?.biased,
+                            trust: {
+                                description: props.article?.trust_description,
+                                author: props.article?.trust_written_by,
+                                date: props.article?.trust_last_update,
+                                score: props.article?.trust_score,
+                            }
+                        }}
                     ></SourceInfo>
                 </div>
             </div>
@@ -84,7 +93,7 @@ export default function SchijnwerperArticle(props) {
                     </Link>
                 }
                 {numberOfResults === 0 &&
-                    <p>Sorry, we vonden geen gerelateerde artikels</p>
+                    <p>0 gerelateerde artikels gevonden</p>
                 }
 
             </div>

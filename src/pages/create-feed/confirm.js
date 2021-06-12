@@ -10,7 +10,7 @@ const _ = require('lodash');
 
 
 export default function Confirm(props) {
-    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    const { user, getAccessTokenSilently } = useAuth0();
     const [progress, setProgress] = useRecoilState(progressAtom);
     const [selectedLocations, setSelectedLocations] = useRecoilState(selectedLocationsAtom);
     const [selectedCategories, setSelectedCategories] = useRecoilState(selectedCategoriesAtom);

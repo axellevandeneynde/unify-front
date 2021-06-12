@@ -34,7 +34,7 @@ export default function MobileNavigation(props) {
             </div>
             <div className={isOpen ? 'mobile-nav-open' : 'navClosed'}>
                 <div className="open-nav-header body-padding">
-                    <Link to="/"><img src={logo} alt="unify-logo" /></Link>
+                    <Link to="/" onClick={closeMenu}><img src={logo} alt="unify-logo" /></Link>
                     <span onClick={closeMenu} className="material-icons material-icons-xl">
                         close
                 </span>

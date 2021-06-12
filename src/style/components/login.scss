@@ -82,6 +82,15 @@
         .login-menu {
             margin-top: 0.5rem;
             width: 100%;
+
+            @media screen and (max-width: 62rem) {
+                margin-top: 0;
+                margin-left: 1rem;
+                box-shadow: $shadow;
+                border-radius: 0.5rem;
+                width: auto;
+                padding: 0.2rem;
+            }
         }
     }
 }
