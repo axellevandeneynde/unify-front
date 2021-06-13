@@ -63,7 +63,7 @@ export default function SourcesQuestion() {
                             return true
                         }
                         // set to true to have all sources available
-                        return false;
+                        return true;
                     })
                     setSources(removeDuplicateSources(relevant));
                     setFilteredSources([removeDuplicateSources(relevant)]);

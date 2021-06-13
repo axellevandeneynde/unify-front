@@ -71,6 +71,14 @@ export default function DesktopNavigation(props) {
                         </NavLink>
                     </div>
                 </div>
+                <NavLink className='nav-link about'
+                    to="/about"
+                    activeStyle={{
+                        fontWeight: 700,
+                    }}
+                >
+                    Over Unify
+                        </NavLink>
             </nav>
         </div>
     )

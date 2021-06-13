@@ -17,6 +17,7 @@ import CreateFeedPage from './pages/create-feed/create-feed.page';
 import UserFeedPage from './pages/user-feed/user-feed.page';
 import { Auth0Provider } from "@auth0/auth0-react";
 import BookmarksPage from "./pages/bookmarks/bookmarks.page";
+import AboutPage from "./pages/about.page";
 
 function App() {
   return (
@@ -34,16 +35,19 @@ function App() {
           <div>
             <Navigation></Navigation>
             <Switch>
+              <Route path="/related/:searchQuery" component={RelatedPage} />
+              <Route path="/user-feed/:userFeedId" component={UserFeedPage} />
+              <ProtectedRoute path="/bookmarks" component={BookmarksPage} />
+              <ProtectedRoute path="/create-feed" component={CreateFeedPage} />
               <Route path="/search">
                 <Search />
               </Route>
               <Route path="/home">
                 <HomePage />
               </Route>
-              <Route path="/related/:searchQuery" component={RelatedPage} />
-              <ProtectedRoute path="/create-feed" component={CreateFeedPage} />
-              <Route path="/user-feed/:userFeedId" component={UserFeedPage} />
-              <ProtectedRoute path="/bookmarks" component={BookmarksPage} />
+              <Route path="/about">
+                <AboutPage />
+              </Route>
               <Route path="/">
                 <Redirect to='/home' />
               </Route>

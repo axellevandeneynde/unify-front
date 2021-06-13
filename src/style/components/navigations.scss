@@ -56,6 +56,8 @@
 
     .nav-section-wrapper {
         padding: 1rem 2rem;
+        max-height: 40vh;
+        overflow-y: scroll;
     }
 
     .nav-section-wrapper:nth-child(2) {
@@ -109,4 +111,13 @@
             height: 100%
         }
     }
+}
+
+.about {
+    position: fixed;
+    bottom: 1rem;
+}
+
+.mobile-nav .about {
+    right: 1rem;
 }

@@ -109,6 +109,14 @@ export default function MobileNavigation(props) {
                             <Login></Login>
                         </div>
                     </div>
+                    <NavLink className='nav-link about'
+                        to="/about"
+                        activeStyle={{
+                            fontWeight: 700,
+                        }}
+                    >
+                        Over Unify
+                        </NavLink>
                 </nav>
             </div>
         </div>
