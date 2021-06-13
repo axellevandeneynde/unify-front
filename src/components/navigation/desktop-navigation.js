@@ -71,7 +71,12 @@ export default function DesktopNavigation(props) {
                         </NavLink>
                     </div>
                 </div>
-                <NavLink className='nav-link about'
+                <NavLink
+                    onClick={() => {
+                        window.scrollTo(0, 0);
+                    }}
+
+                    className='nav-link about'
                     to="/about"
                     activeStyle={{
                         fontWeight: 700,

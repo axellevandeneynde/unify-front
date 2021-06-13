@@ -36,7 +36,7 @@ export default function SourceInfo(props) {
                         </p>
                         <div className="badge-description">
                             <h4 className="side-title">Betrouwbaarheids analyse
-                                <Link to="/about/#trust">
+                                <Link to="/about#trust">
                                     <span className="material-icons">
                                         info
                             </span>
@@ -48,7 +48,9 @@ export default function SourceInfo(props) {
                             <Date date={props.info.trust.date}></Date>
                             <div className="badge-description-score">
                                 <div>
-                                    <TrustScoreBadge score={props.info.trust.score || 7}></TrustScoreBadge>
+                                    <Link to="/about#trust">
+                                        <TrustScoreBadge score={props.info.trust.score || 7}></TrustScoreBadge>
+                                    </Link>
                                     <span className={`${props.info.biased === "true" ? 'biased-badge' : 'hidden'} pink `}>
                                         <span className="material-icons">campaign</span>
                                     </span>

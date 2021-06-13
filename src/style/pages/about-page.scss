@@ -1,6 +1,14 @@
 .about-page {
     margin-top: 5rem;
-    ;
+
+    .title {
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .link {
+        text-decoration: underline;
+    }
 
     .video-container {
         position: relative;

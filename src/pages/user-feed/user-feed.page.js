@@ -3,18 +3,23 @@ import Search from '../../components/search/search';
 import Title from '../../components/title';
 import Article from '../../components/articles/article';
 import { userFeedsAtom } from '../../components/navigation/store';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import Loading from '../../components/loading';
 import Login from '../../components/login/login';
 import { useHistory } from "react-router-dom";
 import { pageNumberUserFeedAtom } from './store';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const _ = require('lodash');
 
 export default function UserFeedPage(props) {
+    const { user, getAccessTokenSilently } = useAuth0();
+
     const feeds = useRecoilValue(userFeedsAtom);
     const [pageNumberUserFeed, setPageNumberUserFeed] = useRecoilState(pageNumberUserFeedAtom);
+    const setUserFeeds = useSetRecoilState(userFeedsAtom);
 
+    const [fetchedNewUserFeed, setFetchedNewUserFeed] = useState(false);
     const [feedId, setFeedId] = useState(props.match.params.userFeedId);
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,7 +29,14 @@ export default function UserFeedPage(props) {
     let history = useHistory();
 
     useEffect(() => {
-        setThisFeed(feeds?.find(feed => feed.id === feedId));
+        if (_.isNil(feeds?.find(feed => feed.id === feedId))) {
+            getNewFeed()
+        } else {
+            setFetchedNewUserFeed(true)
+        }
+        if (fetchedNewUserFeed) {
+            setThisFeed(feeds?.find(feed => feed.id === feedId));
+        }
 
         if (previousHistory !== history.location.pathname) {
             setLoading(true);
@@ -38,6 +50,7 @@ export default function UserFeedPage(props) {
         if (loading === true
             && previousPageNumber < pageNumberUserFeed
             && !_.isNil(thisFeed)
+            && fetchedNewUserFeed
         ) {
             fetch(`${process.env.REACT_APP_ELASTIC_URL}/api/as/v1/engines/unify/search`, {
                 method: 'POST',
@@ -67,6 +80,22 @@ export default function UserFeedPage(props) {
         setPreviousHistory(history.location.pathname);
 
     })
+
+    async function getNewFeed() {
+        const accessToken = await getAccessTokenSilently();
+        fetch(`${process.env.REACT_APP_UNIFY_BACK}/get-user-feeds`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(user)
+        }).then(res => res.json())
+            .then(feeds => {
+                setFetchedNewUserFeed(true);
+                setUserFeeds(feeds)
+            });
+    }
 
 
     return (<div className="user-feed-page">

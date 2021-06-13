@@ -30,7 +30,6 @@
         .material-icons {
             text-align: right;
             width: 100%;
-            display: block;
             cursor: pointer;
         }
 
@@ -85,6 +84,7 @@
                 .material-icons {
                     margin-right: 0.5rem;
                     width: auto;
+                    color: black;
                 }
             }
 

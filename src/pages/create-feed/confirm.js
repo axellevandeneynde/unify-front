@@ -16,6 +16,7 @@ export default function Confirm(props) {
     const [selectedCategories, setSelectedCategories] = useRecoilState(selectedCategoriesAtom);
     const [selectedSources, setSelectedSources] = useRecoilState(selectedSourcesAtom);
     const [feedCreated, setFeedCreated] = useState(false);
+    const [feedId, setFeedId] = useState('');
     const feeds = useRecoilValue(userFeedsAtom);
     const [updateFeedId, setUpdateFeedId] = useRecoilState(updateFeedIdAtom);
     const [feedName, setFeedName] = useState('mijn persoonlijke feed')
@@ -36,7 +37,7 @@ export default function Confirm(props) {
             }
         }
     });
-
+    console.log(feedId);
 
     return (<div className="confirm col-xs-12 col-md-offset-4 col-md-6" >
 
@@ -66,6 +67,8 @@ export default function Confirm(props) {
                     })
                 }).then((res) => res.json()
                 ).then(data => {
+                    console.log(data);
+                    setFeedId(data.feedId)
                     setFeedCreated(true);
                 });
             }}>
@@ -120,7 +123,7 @@ export default function Confirm(props) {
                     <button type="submit" className='side-title button yellow fixed-button'>NAAR MIJN FEED</button>
                     {
                         feedCreated &&
-                        <Redirect to='/home'></Redirect>
+                        <Redirect to={`/user-feed/${feedId}`}></Redirect>
                     }
                 </Form>
             )}
