@@ -47,7 +47,6 @@ export default function Search() {
     const location = useLocation();
 
     function redirectToSearchPage() {
-        console.log(location.pathname);
         if (location.pathname !== '/search') {
             setRedirectToSearch(true);
         }
