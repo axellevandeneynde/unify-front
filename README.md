@@ -2,7 +2,6 @@
 
 This repository contains the front-end for the project Unify. It is part of the Final Work of Axelle Vanden Eynde for the Bachelor Multimedia and Communication Technology at the Erasmus University College. 
 
-A deployed version can be found [here](https://unify-ff3ae.web.app/);
 ## Get it running locally
 
 1. Clone this repository
